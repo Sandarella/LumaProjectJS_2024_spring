@@ -21,7 +21,7 @@ test.describe('footer.spec', () => {
         const footer = new Footer(page);
         
         footer.locators.getFooter().waitFor();
-        expect(footer.locators.getFooter()).toBeVisible();
+        expect(footer.locators.getFooter()).toBeVisible()
     })
 
     test('link "Search Terms" is clickabel', async ({ page }) => {
