@@ -29,7 +29,8 @@ class BottomsWomenPage {
         getSelectCategory: () => this.page.locator(".filter-value"),
         getListViewLink: () => this.page.getByTitle('List').first(),
         getProductsListWrapper: () => this.page.locator('div.products.wrapper'),
-        getProductCards: () => this.page.locator(".item.product.product-item")
+        getProductCards: () => this.page.locator(".item.product.product-item"),
+        getSelectedFiltersTable: () => this.page.locator(".filter-current")
     }
 
     async getLocatorInnerText(locator) {
@@ -92,7 +93,7 @@ class BottomsWomenPage {
     }
 
     async clickShoppingOptionsPriceSecondSubCategory() {
-        await this.locators.getShoppingOptionsPriceSecondSubCategory().click();
+        await this.locators.getShoppingOptionsPriceSecondSubCategory().click({force: true});
 
         return this;
     }

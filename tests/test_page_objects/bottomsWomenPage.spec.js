@@ -3,16 +3,15 @@ import HomePage from "../../page_objects/homePage.js";
 import { BASE_URL, BOTTOMS_WOMEN_PAGE_END_POINT, EXPECTED_ITEM_STYLE_WOMEN_BOTTOMS, WOMEN_BOTTOMS_CATEGORIES_STYLEs_END_POINT, PRODUCT_LIST, EXPECTED_NUMBER_PRODUCTS_STYLEs_BOTTOMS_WOMEN} from "../../helpers/testData.js";
 import { WOMEN_BOTTOMS_CATEGORIES,WOMEN_BOTTOMS_SIZE } from "../../helpers/testWomenData.js";
 
+let homePage;
+
 test.describe('bottomsWomenPage.spec', () => {
     test.beforeEach(async ({ page }) => {
-        const homePage = new HomePage(page);
-
+        homePage = new HomePage(page);
         await homePage.open();
     });
 
     test('Verify the availability of a list of 9 category in the "Style" option drop-down list', async ({ page }) => {
-        const homePage = new HomePage(page);
-
         await homePage.hoverWomenMenuitem();
         const bottomsWomenPage = await homePage.clickBottomsWomenLink();
 
@@ -30,8 +29,6 @@ test.describe('bottomsWomenPage.spec', () => {
     });
 
     test('Verify that each category displays the number of products', async ({ page }) => {
-        const homePage = new HomePage(page);
-
         await homePage.hoverWomenMenuitem();
         const bottomsWomenPage = await homePage.clickBottomsWomenLink();
 
@@ -53,8 +50,6 @@ test.describe('bottomsWomenPage.spec', () => {
 
     EXPECTED_ITEM_STYLE_WOMEN_BOTTOMS.forEach(async (categoryName, index) => {
         test(`Verify navigating to "${categoryName}" page from "Style" option`, async ({ page }) => {
-            const homePage = new HomePage(page);
-
             await homePage.hoverWomenMenuitem();
             const bottomsWomenPage = await homePage.clickBottomsWomenLink();
             await bottomsWomenPage.clickWomenBottomsOptionStyle();
@@ -67,7 +62,6 @@ test.describe('bottomsWomenPage.spec', () => {
 
     EXPECTED_ITEM_STYLE_WOMEN_BOTTOMS.forEach(async (nameCategory, index) => {
         test(`Ensure "${nameCategory}" category selected in the "Style" option aligns with the displayed category name on the page.`, async ({ page }) => {
-            const homePage = new HomePage(page);
             await homePage.hoverWomenMenuitem();
             const bottomsWomenPage = await homePage.clickBottomsWomenLink();
             await bottomsWomenPage.clickWomenBottomsOptionStyle();
@@ -82,7 +76,6 @@ test.describe('bottomsWomenPage.spec', () => {
 
     EXPECTED_ITEM_STYLE_WOMEN_BOTTOMS.forEach(async (nameCategory, index) => {
         test(`Verify that the number of products displayed matches the count for the "${nameCategory}" category `, async ({ page }) => {
-            const homePage = new HomePage(page);
             await homePage.hoverWomenMenuitem();
             const bottomsWomenPage = await homePage.clickBottomsWomenLink();
             await bottomsWomenPage.clickWomenBottomsOptionStyle();
@@ -96,8 +89,6 @@ test.describe('bottomsWomenPage.spec', () => {
     });
     
     test("User can able to select a category from the suggested list of 2 (two) options: Pants.", async ({ page }) => {
-        const homePage = new HomePage(page);
-
         await homePage.hoverWomenMenuitem();
         const bottomsWomenPage = await homePage.clickBottomsWomenLink();
         await bottomsWomenPage.clickWomenBottomsCategory();
@@ -108,8 +99,6 @@ test.describe('bottomsWomenPage.spec', () => {
     });
 
     test("User can able to select a category from the suggested list of 2 (two) options: Shorts", async ({ page }) => {
-        const homePage = new HomePage(page);
-
         await homePage.hoverWomenMenuitem();
         const bottomsWomenPage = await homePage.clickBottomsWomenLink();
         await bottomsWomenPage.clickWomenBottomsCategory();
@@ -120,8 +109,6 @@ test.describe('bottomsWomenPage.spec', () => {
     });
 
     test('Women/Bottoms/Shopping options/Price filter is displayed', async ({ page }) => {
-        const homePage = new HomePage(page);
-
         await homePage.hoverWomenMenuitem();
         const bottomsWomenPage = await homePage.clickBottomsWomenLink();
         await bottomsWomenPage.clickOptionPrice();
@@ -129,8 +116,7 @@ test.describe('bottomsWomenPage.spec', () => {
         await expect(bottomsWomenPage.locators.getOptionPriceFilter()).toBeVisible();
     });
 
-    test.skip("Verify a User can deselect all options at once", async ({ page }) => {
-        const homePage = new HomePage(page);
+    test(" Verify a User can deselect all options at once", async ({ page }) => {
         const womenPage = await homePage.clickWomenLink();
         const bottomsWomenPage = await womenPage.clickWomenBottomsLinkFromShopByCategory();
 
@@ -138,15 +124,12 @@ test.describe('bottomsWomenPage.spec', () => {
         await bottomsWomenPage.clickShoppingOptionsMaterialOrganicCotton();
         await bottomsWomenPage.clickShoppingOptionsPrice();
         await bottomsWomenPage.clickShoppingOptionsPriceSecondSubCategory();        
-
-        const listOfSelectedItems = page.locator(".filter-current");
         await bottomsWomenPage.clickClearAllButton();
     
-        await expect(listOfSelectedItems).not.toBeVisible();
+        await expect(bottomsWomenPage.locators.getSelectedFiltersTable()).not.toBeVisible();
     });
 
     test('On the page Bottoms - Womens page there are 5 options for sizes 28, 29, 30, 31, 32.', async ({page}) => {
-        const homePage = new HomePage(page);
         await homePage.hoverWomenMenuitem();
         const bottomsWomenPage = await homePage.clickBottomsWomenLink();
         await bottomsWomenPage.clickWomenBottomsOptionSize();
@@ -157,7 +140,6 @@ test.describe('bottomsWomenPage.spec', () => {
     });
 
     test('Product display mode change in the catalog to the List mode', async ({ page }) => {
-        const homePage = new HomePage(page);
         await homePage.hoverWomenMenuitem();
         const bottomsWomenPage = await homePage.clickBottomsWomenLink();
         await page.waitForTimeout(2000);
