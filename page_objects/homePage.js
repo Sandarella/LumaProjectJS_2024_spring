@@ -165,7 +165,6 @@ class HomePage {
 
   async clickMenBottomsLink() {
     await this.locators.getMenBottomsLink().click();
-
     return new MenBottomsPage(this.page);
   }
 

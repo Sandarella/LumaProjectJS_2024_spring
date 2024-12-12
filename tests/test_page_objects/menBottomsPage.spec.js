@@ -1,20 +1,17 @@
-
 import { test, expect } from "@playwright/test";
 import HomePage from "../../page_objects/homePage.js";
 import MenBottomsPage from "../../page_objects/menBottomsPage.js";
 import { BASE_URL, MEN_BOTTOMS_PAGE_END_POINT, LIST_CATEGORY_MEN_BOTTOMS, ID_PARAMETERS_OF_SUB_CATEGORY_ON_MEN_BOTTOMS_PAGE, LIST_CATEGORY_MEN_BOTTOMS_WITH_QUANTITY } from "../../helpers/testData.js";
 
+let homePage
+
   test.describe ('menBottomsPage.spec', () => {
     test.beforeEach(async({page}) => {
-      const homePage = new HomePage(page);
-
+      homePage = new HomePage(page);
       await homePage.open();
     })
 
     test("Verify men's bottom tab", async ({ page }) => {
-
-    const homePage = new HomePage(page);
-    
     await homePage.hoverMenLink();
     const menBottomsPage = await homePage.clickMenBottomsLink();
 
@@ -23,8 +20,6 @@ import { BASE_URL, MEN_BOTTOMS_PAGE_END_POINT, LIST_CATEGORY_MEN_BOTTOMS, ID_PAR
     });
 
     test('verify the sidebar is on the left', async ({ page }) => {
-      const homePage = new HomePage(page);
-
       await homePage.hoverMenLink();
       const menBottomsPage = await homePage.clickMenBottomsLink();
 
@@ -37,7 +32,6 @@ import { BASE_URL, MEN_BOTTOMS_PAGE_END_POINT, LIST_CATEGORY_MEN_BOTTOMS, ID_PAR
 
     LIST_CATEGORY_MEN_BOTTOMS.forEach((name, i) => {
       test(`verify the user can select ${name} subcategory from the dropdown`, async ({ page }) => {
-        const homePage = new HomePage(page);
         await homePage.hoverMenLink();
         const menBottomsPage = await homePage.clickMenBottomsLink();
 
@@ -58,8 +52,6 @@ import { BASE_URL, MEN_BOTTOMS_PAGE_END_POINT, LIST_CATEGORY_MEN_BOTTOMS, ID_PAR
     })
   
     test("Checking that the grid is selected and has 12 positions by defaultBottoms", async ({ page }) => {
-      const homePage = new HomePage(page);
-
       await homePage.hoverMenLink();
       const menBottomsPage = await homePage.clickMenBottomsLink();
   
@@ -69,8 +61,6 @@ import { BASE_URL, MEN_BOTTOMS_PAGE_END_POINT, LIST_CATEGORY_MEN_BOTTOMS, ID_PAR
     })
 
     test("Checking that the list is selected and has 10 positions by defaultBottoms", async ({ page }) => {
-      const homePage = new HomePage(page);
-
       await homePage.hoverMenLink();
       const menBottomsPage = await homePage.clickMenBottomsLink();
       await menBottomsPage.waitForTimeout(2000);
@@ -83,13 +73,12 @@ import { BASE_URL, MEN_BOTTOMS_PAGE_END_POINT, LIST_CATEGORY_MEN_BOTTOMS, ID_PAR
     })
 
     test("verify that the quantity of available items is visible", async ({ page }) => {
-      const homePage = new HomePage(page);
       await homePage.hoverMenLink();
       const menBottomsPage = await homePage.clickMenBottomsLink();
   
       await expect(page).toHaveURL(BASE_URL + MEN_BOTTOMS_PAGE_END_POINT);
-      await page.waitForLoadState('load');
 
+      await page.waitForLoadState('load');
       await menBottomsPage.hoverMenBottomsCategory();
       await menBottomsPage.clickMenBottomsCategory();
       await menBottomsPage.waitForTimeout(5000);
@@ -97,18 +86,15 @@ import { BASE_URL, MEN_BOTTOMS_PAGE_END_POINT, LIST_CATEGORY_MEN_BOTTOMS, ID_PAR
       await expect(menBottomsPage.locators.getMenBottomsCategoryListOfItemsLocator().first()).toBeVisible();
   
       const receivedElements = (await menBottomsPage.locators.getMenBottomsCategoryListOfItemsLocator().allInnerTexts()).map(item => item.replace('\n' , ' ')); 
-  
       expect(LIST_CATEGORY_MEN_BOTTOMS_WITH_QUANTITY).toEqual(receivedElements);
     })
 
     test("Verify that button Clear All can deselecte options", async ({ page }) => {
-      const homePage = new HomePage(page);
       await homePage.hoverMenLink();
       const menBottomsPage = await homePage.clickMenBottomsLink();
-
+      await menBottomsPage.waitForPageToLoad();
       await menBottomsPage.clickMenBottomsCategory();
       await menBottomsPage.clickMenBottomsCategoryPants();
-
       const listOfSelectedItems = page.locator(".filter-current");
       await menBottomsPage.clickMenBottomsClearAllButton();
 
