@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 import HomePage from "../../page_objects/homePage.js";
 import GearPage from "../../page_objects/gearPage.js";
 
-let homePage, GearPage
+let homePage, gearPage
 
 test.describe('gearPage.spec', () => {
     test.beforeEach(async ({ page }) => {
