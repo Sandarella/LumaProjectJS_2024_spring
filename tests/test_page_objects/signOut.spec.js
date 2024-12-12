@@ -33,10 +33,9 @@ test.describe('signOut.spec', () => {
     await signInPage.clickDpopdown(); 
 
     await expect(signInPage.locators.getDropdownWishList()).toBeVisible();
-
   })
 
-  test.skip('should be the "Log out" link, the user logs out of his account by clicking on it', async ({ page }) => {
+  test('should be the "Log out" link, the user logs out of his account by clicking on it', async ({ page }) => {
     await homePage.clickSignInLink();
     const signInPage = new SignInPage(page);
     await signInPage.fillFieldEmail();
@@ -48,5 +47,4 @@ test.describe('signOut.spec', () => {
 
     expect(signInPage.locators.getMessageSignedOut()).toBeTruthy();
   })
-
 })
