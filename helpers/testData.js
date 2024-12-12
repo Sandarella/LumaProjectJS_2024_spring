@@ -162,7 +162,7 @@ export const LIST_STYLE_MEN_TOPS = [
   'Reversible',
   'Tank',
   'Tee'];
-export const SALE_SIDE_MENU_SECTIONS = ["WOMEN'S DEALS", "MENS'S DEALS", "GEAR DEALS"];
+export const SALE_SIDE_MENU_SECTIONS = [ "Women's Deals", "Mens's Deals", 'Gear Deals' ];
 
 export const LIST_CATEGORY_MEN_TOPS = [
   'Jackets 11 item',

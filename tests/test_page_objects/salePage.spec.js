@@ -33,10 +33,10 @@ test.describe('salePage.spec', () => {
 
     test('Check navigation and deal section to the Sale page', async({page}) => {
         const salePage = await homePage.clickSaleLink();
-           
         await expect(page).toHaveURL(BASE_URL + SALE_PAGE_END_POINT);
 
         const dealsTextArray = await salePage.locators.getDealsLocator().allInnerTexts()
+        console.log(dealsTextArray)
         expect(dealsTextArray).toEqual(saleDealsCategories);
     });
 
