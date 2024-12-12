@@ -196,12 +196,30 @@ export const SHOPING_CART_COUNTER_NUMBER = '1';
 export const WOMEN_CATEGORIES = ["Tops", "Bottoms"];
 export const LIST_OF_SHOPPING_OPTIONS_ON_WATCHES_PAGE = [
   "CATEGORY",
-  "PRICE",
   "ACTIVITY",
-  "MATERIAL",
   "GENDER",
+  "MATERIAL",
   "NEW",
+  "PRICE",
   "SALE",
+];
+export const LIST_OF_SHOPPING_OPTIONS_ON_WATCHES_PAGE_LOCATORS = [
+  "div.filter-options>div:nth-child(1) ol li a",
+  "div.filter-options>div:nth-child(2) ol li a",
+  "div.filter-options>div:nth-child(3) ol li a",
+  "div.filter-options>div:nth-child(4) ol li a",
+  "div.filter-options>div:nth-child(5) ol li a",
+  "div.filter-options>div:nth-child(6) ol li a",
+  "div.filter-options>div:nth-child(7) ol li a",
+];
+export const LIST_OF_SUBMENU_ITEMS_EXPECTED = [
+  ["Electronic", "Exercise", "Fashion", "Timepiece"],
+  ["Outdoor", "Recreation", "Gym", "Athletic", "Sports"],
+  ["Men", "Women", "Unisex"],
+  ["Leather", "Metal", "Plastic", "Rubber", "Stainless Steel", "Silicone"],
+  ["Yes"],
+  ["$40.00 - $49.99", "$50.00 - $59.99", "$90.00 and above"],
+  ["Yes"]  
 ];
 export const MAIN_PAGE_HOT_SELLERS_LIST_OF_CARD_LINKS = [
   "/radiant-tee.html",
@@ -218,24 +236,6 @@ export const MAIN_PAGE_HOT_SELLERS_LIST_OF_CARD_REVIEW_LINKS = [
   "/",
   "/fusion-backpack.html#reviews",
   "/push-it-messenger-bag.html#reviews"
-];
-export const LIST_OF_SHOPPING_OPTIONS_ON_WATCHES_PAGE_LOCATORS = [
-  "div.filter-options>div:nth-child(1) ol li a",
-  "div.filter-options>div:nth-child(2) ol li a",
-  "div.filter-options>div:nth-child(3) ol li a",
-  "div.filter-options>div:nth-child(4) ol li a",
-  "div.filter-options>div:nth-child(5) ol li a",
-  "div.filter-options>div:nth-child(6) ol li a",
-  "div.filter-options>div:nth-child(7) ol li a",
-];
-export const LIST_OF_SUBMENU_ITEMS_EXPECTED = [
-  ["Electronic", "Exercise", "Fashion", "Timepiece"],
-  ["$40.00 - $49.99", "$50.00 - $59.99", "$90.00 and above"],
-  ["Outdoor", "Recreation", "Gym", "Athletic", "Sports"],
-  ["Leather", "Metal", "Plastic", "Rubber", "Stainless Steel", "Silicone"],
-  ["Men", "Women", "Unisex"],
-  ["Yes"],
-  ["Yes"]
 ];
 export const LIST_OF_MATERIALS_SUBITEMS_EXPECTED = [
   "Leather",

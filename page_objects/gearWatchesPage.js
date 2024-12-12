@@ -32,9 +32,9 @@ class GearWatchesPage {
 
   async clickShoppingOption(option) {
     await this.locators.getShoppingOption(option).click();
-
     return this;
   }
+  
   async clickClearAllButton() {
     await this.locators.getClearAllButton().click();
 

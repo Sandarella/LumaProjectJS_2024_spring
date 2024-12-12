@@ -11,9 +11,13 @@ import {
 } from "../../helpers/testData.js";
 import { TIMEOUT } from "dns/promises";
 
+let homePage, gearWatchesPage, watchProductPage
+
 test.describe('gearWatchesPage.spec', () => {
   test.beforeEach(async ({ page }) => {
-    const homePage = new HomePage(page);
+    homePage = new HomePage(page);
+    gearWatchesPage = new GearWatchesPage(page);
+    watchProductPage = new WatchProductPage(page);
 
     await homePage.open();
     await homePage.hoverGearMenuItem();
@@ -21,9 +25,8 @@ test.describe('gearWatchesPage.spec', () => {
   })
 
   LIST_OF_SHOPPING_OPTIONS_ON_WATCHES_PAGE.forEach((option, idx) => {
-    test.skip(`Verify the "Clear All" button after applying ${option} filters on the Gear/Watches page`, async ({ page }) => {
+    test(`Verify the "Clear All" button after applying ${option} filters on the Gear/Watches page`, async ({ page }) => {
       test.slow();
-      const gearWatchesPage = new GearWatchesPage(page);
 
       if (LIST_OF_SHOPPING_OPTIONS_ON_WATCHES_PAGE[idx] === "GENDER")
       {
@@ -59,8 +62,6 @@ test.describe('gearWatchesPage.spec', () => {
   LIST_OF_MATERIALS_SUBITEMS_EXPECTED.forEach((material) => {
     test(`Verify the related products are displayed after applying ${material} Material filter on the Gear/Watches page`, async ({ page }) => {
       test.slow();
-      const gearWatchesPage = new GearWatchesPage(page);
-      const watchProductPage = new WatchProductPage(page);
 
       await gearWatchesPage.clickShoppingOption(
         LIST_OF_SHOPPING_OPTIONS_ON_WATCHES_PAGE[3]
@@ -84,11 +85,8 @@ test.describe('gearWatchesPage.spec', () => {
     });
   });
   
-  test("Verify that the filter is applied after selecting an option in the Material dropdown list on the Gear/Watches page", async ({
-    page,
-  }) => {
+  test("Verify that the filter is applied after selecting an option in the Material dropdown list on the Gear/Watches page", async ({ page }) => {
     test.slow();
-    const gearWatchesPage = new GearWatchesPage(page);
 
     await gearWatchesPage.clickShoppingOption(
       LIST_OF_SHOPPING_OPTIONS_ON_WATCHES_PAGE[3]
@@ -120,18 +118,13 @@ test.describe('gearWatchesPage.spec', () => {
     }
   });
   
-  test.skip("Verify the Shopping options dropdown list items on the Gear/Watches page", async ({
-    page,
-  }) => {
+  test("Verify the Shopping options dropdown list items on the Gear/Watches page", async ({page}) => {
     test.slow();
-    const gearWatchesPage = new GearWatchesPage(page);
 
     for (let i = 0; i < LIST_OF_SHOPPING_OPTIONS_ON_WATCHES_PAGE.length; i++)
     {
-      await gearWatchesPage.clickShoppingOption(
-        LIST_OF_SHOPPING_OPTIONS_ON_WATCHES_PAGE[i]
-      );
-      await gearWatchesPage.locators.getWaitForListOfShoppingOptions(
+      await gearWatchesPage.clickShoppingOption( LIST_OF_SHOPPING_OPTIONS_ON_WATCHES_PAGE[i] );
+      await gearWatchesPage.locators.getWaitForListOfShoppingOptions( 
         LIST_OF_SHOPPING_OPTIONS_ON_WATCHES_PAGE[i],
         i
       );
@@ -150,7 +143,6 @@ test.describe('gearWatchesPage.spec', () => {
 
   test('Filter Products By ActivityType on gearWatchesPage', async ({ page }) => {
     test.slow();
-    const gearWatchesPage = new GearWatchesPage(page);
 
     await gearWatchesPage.clickShoppingOption(LIST_OF_SHOPPING_OPTIONS_ON_WATCHES_PAGE[2]);
 
@@ -164,7 +156,6 @@ test.describe('gearWatchesPage.spec', () => {
 });
 
   test('Verify only watches on sale displayed on page', async ({ page }) => {
-    const gearWatchesPage = new GearWatchesPage(page);
     await gearWatchesPage.clickSaleOption()
     const watchProductPage = await gearWatchesPage.clickYesOption()
     expect (watchProductPage.locators.getSaleItemsNumber()).toEqual(watchProductPage.locators.getSaleItemsNumber())
@@ -173,7 +164,6 @@ test.describe('gearWatchesPage.spec', () => {
   LIST_OF_CATEGORY_WATCHES.forEach((category, idx) => {
     test(`Verify Category options ${category} on gearWatchesPage`, async ({ page }) => {
         test.slow();
-        const gearWatchesPage = new GearWatchesPage(page);
     
         await gearWatchesPage.clickCategory();
         
