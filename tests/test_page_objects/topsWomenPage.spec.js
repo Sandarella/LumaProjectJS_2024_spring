@@ -99,6 +99,7 @@ test.describe("topWomenPage.spec", () => {
 
     expect(shoppingByList).toEqual(["Tees", "S", "Purple"]);
   });
+  
   test('women tops display mode can be changed, visible', async ({page}) => {
     const womenPage = await homePage.hoverWomenMenuitem();
     const topsWomenPage = await womenPage.clickTopsWomenLink();
