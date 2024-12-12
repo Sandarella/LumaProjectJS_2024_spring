@@ -14,7 +14,7 @@ class SignInPage {
         getButtonSignIn: () => this.page.getByRole('button', {name: 'Sign In'}),
         getGreetingElement: () => this.page.locator('body > div.page-wrapper > header > div.panel.wrapper > div > ul > li.greet.welcome > span'),
         getTabDropdown: () => this.page.getByRole('banner').locator('button').filter({hasText: 'Change'}),
-        getDropdownWishList: () => this.page.getByRole('banner').getByText('My Account My Wish List Sign'),
+        getDropdownWishList: () => this.page.locator('.customer-welcome.active .header.links'),
         getSignOutlinck: () => this.page.getByRole('link', {name: 'Sign Out'}),
         getMessageSignedOut: () => this.page.getByText('You are signed out'),
         getPageHeader: () => this.page.getByRole('heading').first(),
