@@ -5,28 +5,27 @@ import { BASE_URL, GEAR_BAGS_HEADER, GEAR_BAGS_PAGE_END_POINT } from '../../help
 import { MATERIAL_OPTION_NAMES, ACTIVE_PAGE_CLASS_PAGINATION, ACTIVE_PAGE_TEXT } from "../../helpers/testGearBagsData";
 import { GEAR_BAGES_SECOND_PAGE_END_POINT } from '../../helpers/testGearBagsData.js';
 
+let homePage, gearBagsPage
+
 test.describe('gearBags.spec', () => {
+    
     test.beforeEach(async({page}) => {
-        const homePage = new HomePage(page);
+        homePage = new HomePage(page);
+        gearBagsPage = new GearBagsPage(page);
 
         await homePage.open();
         await homePage.hoverGearMenuItem();
         await homePage.clickGearBags();
     })
 
-     test('Redirect to "Gear Bags" page', async({page}) => {       
-        const gearBagsPage = new GearBagsPage(page);
-       
+     test('Redirect to "Gear Bags" page', async({page}) => {      
         await expect(page).toHaveURL(BASE_URL + GEAR_BAGS_PAGE_END_POINT);
         await expect(gearBagsPage.locators.getGearBagsPageHeader()).toHaveText(GEAR_BAGS_HEADER);
     }) 
     
     MATERIAL_OPTION_NAMES.forEach((name, idx) => {
         test(`Verify that ${name} from material options list is visible and has right name`, async ({ page }) => {
-            const gearBagsPage = new GearBagsPage(page);
-
             await gearBagsPage.clickMaterialOption();
-
             const materialName = await gearBagsPage.locators.getMateialItemList().nth(idx)
             const materialNameText = await gearBagsPage.getMaterialItemNameText(idx);
             
@@ -36,8 +35,6 @@ test.describe('gearBags.spec', () => {
     })
     
     test('BTN "Page" redirects to the corresponding page', async ({ page }) => {
-        const homePage = new HomePage(page)     
-
         await homePage.hoverGearMenuItem()
         const gearBagsPage = await homePage.clickGearBags()
         await gearBagsPage.clickInactiveSecondPagePaginationLink()
@@ -49,8 +46,6 @@ test.describe('gearBags.spec', () => {
     })
     
     test('Apply filter "Leather" and verify that each bag has selected material in the description', async ({ page }) => {
-        const gearBagsPage = new GearBagsPage(page);
-
         await gearBagsPage.clickMaterialOption();
         await gearBagsPage.clickMaterialLeather();
 
@@ -68,8 +63,6 @@ test.describe('gearBags.spec', () => {
       })
 
       test("Verify that a User can change mode of products", async ({ page }) => {
-        const gearBagsPage = new GearBagsPage(page);
-
         await gearBagsPage.clickListMode();
         
         expect(gearBagsPage.locators.getListMode()).toBeTruthy();

@@ -20,7 +20,6 @@ class WhatsNewPage {
 
     async clickLogoLink() {
         await this.locators.getLogoLink().click();
-
         return new HomePage(this.page);
     }
 }

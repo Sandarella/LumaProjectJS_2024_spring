@@ -2,16 +2,15 @@ import { test, expect } from "@playwright/test";
 import HomePage from "../../page_objects/homePage.js";
 import { TRAINING_URL, TRAINING_PAGE_HEADER, BASE_URL, TRAINING_PAGE_BREADCRUMBS_MENU_TRAINING_TEXT, TRAINING_PAGE_BREADCRUMBS_MENU_HOME_TEXT, TRAINING_PAGE_VIDEODOWNLOAD_URL, VIDEODOWNLOAD_PAGE_HEADER, COMPARE_URL_REGEX, COMPARE_PRODUCT_PAGE_HEADER, COMPARE_PRODUCT_PAGE_ITEM_TEXT, MY_WISHLIST_PAGE_URL, MY_WISHLIST_PAGE_ITEM_TEXT, MY_WISHLIST_PAGE_HEADER} from "../../helpers/testData.js";
 
+let homePage
+
 test.describe('trainingPage.spec', () => {
 	test.beforeEach(async ({ page }) => {
-		const homePage = new HomePage(page);
-
+		homePage = new HomePage(page);
 		await homePage.open();
   });
 
 	test('Verify that the "Training" link redirects to the training\'s products page', async ({ page }) => {
-	  const homePage = new HomePage(page);
- 
 	  const trainingPage = await homePage.clickTrainingLink();
  
 	  await expect(page).toHaveURL(TRAINING_URL);
@@ -21,8 +20,6 @@ test.describe('trainingPage.spec', () => {
 	});
 
 	test('Verify that the correct breadcrumb navigation is displayed on the "Training" page and leading up to this section (Home > Training)', async({page}) => {
-		const homePage = new HomePage(page);
-  
 		const trainingPage = await homePage.clickTrainingLink();
  
  		await expect(trainingPage.locators.getBreadcrumbMenuAll()).toBeVisible();
@@ -37,8 +34,6 @@ test.describe('trainingPage.spec', () => {
 	})
 
 	test('Verify that the promo block is displayed on the “Training” page', async({page}) => {
-		const homePage = new HomePage(page);
-
 		const trainingPage = await homePage.clickTrainingLink();
 
 		expect(trainingPage.locators.getTrainingPromoBlock()).toBeTruthy();
@@ -47,8 +42,6 @@ test.describe('trainingPage.spec', () => {
   })
 
   test('Verify that the "Shop By Category" section is displayed on the “Training” page', async({page}) => {
-		const homePage = new HomePage(page);
-	
 		const trainingPage = await homePage.clickTrainingLink();
 	
 		expect(trainingPage.locators.getTrainingShopByCategorySection()).toBeTruthy();
@@ -56,8 +49,6 @@ test.describe('trainingPage.spec', () => {
   })
 
   test('Verify that clicking on the "Video Download" link redirects to the correct "Video Download" page', async({page}) => {
-		const homePage = new HomePage(page);
-  
 		const trainingPage = await homePage.clickTrainingLink();
 		const videoDownloadPage = await trainingPage.clickVideoDownloadLink();
 
@@ -67,8 +58,6 @@ test.describe('trainingPage.spec', () => {
   })
 
   test('Verify that the User can use the “Compare Products” feature to compare different training products and identify their features and benefits', async({page}) => {
-		const homePage = new HomePage(page);
-
 		await homePage.hoverGearMenuItem();
 		const gearBagsPage = await homePage.clickGearBagsSubmenuItem();
 		await page.waitForTimeout(3000);
@@ -88,8 +77,6 @@ test.describe('trainingPage.spec', () => {
 	})
 
 		test('Verify that the User can add training products to the wish list for tracking and accessing additional information about them in the training materials', async({page}) => {
-		const homePage = new HomePage(page);
-
 		const signInPage = await homePage.clickSignInLink();
 		await signInPage.fillEmailField();
 		await signInPage.fillPasswordField();
@@ -113,5 +100,4 @@ test.describe('trainingPage.spec', () => {
 		await expect(wishListPage.locators.getMyWishListItemNameLocator()).toBeVisible();
 		await expect(wishListPage.locators.getMyWishListItemNameLocator()).toHaveText(MY_WISHLIST_PAGE_ITEM_TEXT);
  })
-  
 });

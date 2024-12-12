@@ -162,7 +162,7 @@ export const LIST_STYLE_MEN_TOPS = [
   'Reversible',
   'Tank',
   'Tee'];
-export const SALE_SIDE_MENU_SECTIONS = ["WOMEN'S DEALS", "MENS'S DEALS", "GEAR DEALS"];
+export const SALE_SIDE_MENU_SECTIONS = [ "Women's Deals", "Mens's Deals", 'Gear Deals' ];
 
 export const LIST_CATEGORY_MEN_TOPS = [
   'Jackets 11 item',
@@ -196,11 +196,11 @@ export const SHOPING_CART_COUNTER_NUMBER = '1';
 export const WOMEN_CATEGORIES = ["Tops", "Bottoms"];
 export const LIST_OF_SHOPPING_OPTIONS_ON_WATCHES_PAGE = [
   "CATEGORY",
-  "PRICE",
   "ACTIVITY",
-  "MATERIAL",
   "GENDER",
+  "MATERIAL",
   "NEW",
+  "PRICE",
   "SALE",
 ];
 export const LIST_OF_SHOPPING_OPTIONS_ON_WATCHES_PAGE_LOCATORS = [
@@ -214,12 +214,28 @@ export const LIST_OF_SHOPPING_OPTIONS_ON_WATCHES_PAGE_LOCATORS = [
 ];
 export const LIST_OF_SUBMENU_ITEMS_EXPECTED = [
   ["Electronic", "Exercise", "Fashion", "Timepiece"],
-  ["$40.00 - $49.99", "$50.00 - $59.99", "$90.00 and above"],
   ["Outdoor", "Recreation", "Gym", "Athletic", "Sports"],
-  ["Leather", "Metal", "Plastic", "Rubber", "Stainless Steel", "Silicone"],
   ["Men", "Women", "Unisex"],
+  ["Leather", "Metal", "Plastic", "Rubber", "Stainless Steel", "Silicone"],
   ["Yes"],
-  ["Yes"]
+  ["$40.00 - $49.99", "$50.00 - $59.99", "$90.00 and above"],
+  ["Yes"]  
+];
+export const MAIN_PAGE_HOT_SELLERS_LIST_OF_CARD_LINKS = [
+  "/radiant-tee.html",
+  "/breathe-easy-tank.html",
+  "/argus-all-weather-tank.html",
+  "/hero-hoodie.html",
+  "/fusion-backpack.html",
+  "/push-it-messenger-bag.html"
+];
+export const MAIN_PAGE_HOT_SELLERS_LIST_OF_CARD_REVIEW_LINKS = [
+  "/radiant-tee.html#reviews",
+  "/breathe-easy-tank.html#reviews",
+  "/",
+  "/",
+  "/fusion-backpack.html#reviews",
+  "/push-it-messenger-bag.html#reviews"
 ];
 export const LIST_OF_MATERIALS_SUBITEMS_EXPECTED = [
   "Leather",

@@ -29,7 +29,8 @@ class BottomsWomenPage {
         getSelectCategory: () => this.page.locator(".filter-value"),
         getListViewLink: () => this.page.getByTitle('List').first(),
         getProductsListWrapper: () => this.page.locator('div.products.wrapper'),
-        getProductCards: () => this.page.locator(".item.product.product-item")
+        getProductCards: () => this.page.locator(".item.product.product-item"),
+        getSelectedFiltersTable: () => this.page.locator(".filter-current")
     }
 
     async getLocatorInnerText(locator) {
@@ -38,68 +39,57 @@ class BottomsWomenPage {
 
     async clickWomenBottomsOptionStyle() {
         await this.locators.getWomenBottomsOptionStyle().click();
-
         return this;
     }
 
     async extractAndCompareItems(receivedResult, expectedItems) {
         const extractedItems = receivedResult.map(item => item.replace(/\nitem$/, '').split(' ').slice(0, -1).join(' '));
         const areEqual = JSON.stringify(extractedItems) === JSON.stringify(expectedItems);
-        
         return { extractedItems, areEqual };
     }
 
     async clickWomenBottomsCategory() {
         await this.locators.getBottomsCategory().click();
-
         return this;
     }
 
     async clickBottomsCategoryPants() {
         await this.locators.getBottomsCategoryPants().click();
-
         return this;
     }
 
     async clickBottomsCategoryShorts() {
         await this.locators.getBottomsCategoryShorts().click();
-
         return this;
     }
 
     async clickOptionPrice(){
         await this.locators.getOptionPrice().click();
-
         return this;
     }
 
     async clickShoppingOptionsMaterial() {
         await this.locators.getShoppingOptionsMaterial().click();
-
         return this;
     }
 
     async clickShoppingOptionsMaterialOrganicCotton() {
         await this.locators.getShoppingOptionsMaterialOrganicCotton().click();
-
         return this;
     }
 
     async clickShoppingOptionsPrice() {
         await this.locators.getShoppingOptionsPrice().click();
-
         return this;
     }
 
     async clickShoppingOptionsPriceSecondSubCategory() {
-        await this.locators.getShoppingOptionsPriceSecondSubCategory().click();
-
+        await this.locators.getShoppingOptionsPriceSecondSubCategory().click({force: true});
         return this;
     }
 
     async clickClearAllButton() {
         await this.locators.getClearAllButton().click();
-
         return this;
     }
 
@@ -110,7 +100,6 @@ class BottomsWomenPage {
 
     async clickWomenBottomsOptionSize() {
         await this.locators.getWomenBottomsOptionSize().click();
-
         return this.page;
     }
 
@@ -128,7 +117,6 @@ class BottomsWomenPage {
 
     async clickListViewLink() {
         await this.locators.getListViewLink().click();
-
         return this;
     }
 }

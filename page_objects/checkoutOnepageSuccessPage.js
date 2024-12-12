@@ -13,7 +13,6 @@ class CheckoutOnepageSuccessPage {
 
     async clickActionSwitchButton() {
         await this.locators.getActionSwitchButton().click();
-
         return this;
     }
 
@@ -27,9 +26,7 @@ class CheckoutOnepageSuccessPage {
     }
 
     async clickMyAccountLink() {
-        
         await this.locators.getMyAccountLink().click();
-
         return new MyAccountPage(this.page);
     }
 

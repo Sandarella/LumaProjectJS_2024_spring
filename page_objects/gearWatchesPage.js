@@ -32,24 +32,21 @@ class GearWatchesPage {
 
   async clickShoppingOption(option) {
     await this.locators.getShoppingOption(option).click();
-
     return this;
   }
+  
   async clickClearAllButton() {
     await this.locators.getClearAllButton().click();
-
     return this;
   }
 
   async clickSubMenuLink(option) {
     await this.locators.getSubMenuItemLink(option).click();
-
     return this;
   }
 
   async openProductPage(product) {
     await this.locators.getProductPage(product).click();
-
     return new WatchProductPage(this.page);
   }
 
@@ -65,13 +62,11 @@ class GearWatchesPage {
 
   async clickCategory() {
     await this.locators.getCategory().click();
-
     return this;
   }
 
   async getOptionsText(idx) {
     const text =(await this.locators.getCategoryOptions().nth(idx).innerText()).split(' ')[0];
-
     return text;
   }
 }

@@ -17,13 +17,11 @@ class WatchProductPage {
 
   async openMoreInformationSection() {
     await this.locators.getMoreInformationSection().click();
-
     return this;
   }
 
   async goBackToGearWatchesPage() {
     await this.page.goBack();
-
     return new GearWatchesPage(this.page);
   }
 }

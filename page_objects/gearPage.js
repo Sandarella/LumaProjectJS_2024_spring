@@ -17,19 +17,16 @@ class GearPage {
 
     async clickSubCategoryBags() {
         await this.locators.getSubCategoryBags().click();
-
         return new GearBagsPage;
     }
 
     async clickSubCategoryFitness() {
         await this.locators.getSubCategoryFitness().click();
-
         return new GearFitnessPage;
     }
 
     async clickSubCategoryWatches() {
         await this.locators.getSubCategoryWatches().click();
-
         return new GearWatchesPage;
     }
 }

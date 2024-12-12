@@ -4,8 +4,7 @@ class ArgusAllWeatherTankPage{
     }
 
     locators = {
-        getArgusAllWeatherTankPageHeader: () => this.page.getByRole('heading', { name: 'Argus All-Weather Tank' }),
+        getCurrentPageHeader: () => this.page.getByRole('heading', { name: 'Argus All-Weather Tank' }),
     }
 }
-
 export default ArgusAllWeatherTankPage

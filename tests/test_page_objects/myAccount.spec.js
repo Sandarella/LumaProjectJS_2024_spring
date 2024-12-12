@@ -4,18 +4,19 @@ import HomePage from "../../page_objects/homePage";
 import { USER_DATA, NEW_USER_DATA, BASE_URL, CUSTOMER_LOGIN_PAGE_END_POINT_SHORT, MY_ACCOUNT_HEADER, MY_ACCOUNT_PAGE_END_POINT } from "../../helpers/testData";
 import MyAccountPage from "../../page_objects/myAccountPage.js";
 
+let homePage, myAccountPage
+
 test.describe('My Account', () => {
 
-    test.beforeEach('Create account', async ({ page, createNewAccount }) => {        
-        const myAccountPage = new MyAccountPage(page);
+    test.beforeEach('Create account', async ({ page, createNewAccount }) => {   
+        homePage = new HomePage(page);
+        myAccountPage = new MyAccountPage(page);
         await myAccountPage.clickLogoLink();
     })
 
-    test.skip('Veryfy that user name is changed', async ({ page }) => {
-        const homePage = new HomePage(page);
+    test('Veryfy that user name is changed', async ({ page }) => {
         const name = USER_DATA.firstName + " " + USER_DATA.lastName;
         const newName = NEW_USER_DATA.firstName + " " + NEW_USER_DATA.lastName;
-
         const greetingText = await homePage.getGreetingText(name);
 
         expect(greetingText).toContain(name);
@@ -33,9 +34,7 @@ test.describe('My Account', () => {
         await expect(myAccountPage.locators.getGreetting()).toContainText(newName);
     })
 
-    test.skip('Change email and password and verify the User can sign in', async ({ page }) => {
-        const homePage = new HomePage(page);
-
+    test('Change email and password and verify the User can sign in', async ({ page }) => {
         await homePage.clickWelcomeDropdown();
         const myAccountPage = await homePage.clickMyAccountLink();
         const editMyAccountPage = await myAccountPage.clickAccountInformationSidebarLink();
@@ -59,8 +58,6 @@ test.describe('My Account', () => {
     })
 
     test("Verify that clicking on the 'My Account' section name in the menu redirects to the 'My Account' page", async ({page}) => {
-        const homePage = new HomePage(page);
-
         await homePage.clickWelcomeDropdown();
         const myAccountPage = await homePage.clickMyAccountLink();
 

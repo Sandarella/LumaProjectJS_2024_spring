@@ -4,7 +4,7 @@ class HeroHoodiePage{
     }
 
     locators = {
-        getHeroHoodieHeader: () => this.page.getByRole('heading', {name: 'Hero Hoodie'}),
+        getCurrentPageHeader: () => this.page.getByRole('heading', {name: 'Hero Hoodie'}),
     }
 }
 

@@ -34,48 +34,50 @@ class TopsWomenPage {
 
     async clickCategoryFilterOption() {
         await this.locators.getCategoryFilterOption().click();
-
         return this.page;
     }
+
     async clickFilterOptionJacketsLink() {
         await this.locators.getFilterOptionJacketsLink().click();
-
         return this.page;
     }
+
     async getAllWomenTopsProductCards() {
         return await this.locators.getWomenTopsProductItemsCards().all();
     }
+
     async getAllProductCardsLength() {
         const arr = await this.getAllWomenTopsProductCards();
-
         return arr.length - 1;
     }
+
     async hoverRandomWomenTopsProductItem(index) {
         const productCards =  await this.getAllWomenTopsProductCards();
         await productCards[index].hover();
-
         return this.page;
     }
+
     async getAllWomenTopsAddToMyWishListButtons() {
         return await this.locators.listWomenTopsAddToMyWishListButtons().all();
     }
+
     async getRandomWomenTopsAddToWishListButton(index) {
         const addToWishListButtons = await this.getAllWomenTopsAddToMyWishListButtons();
-
         return addToWishListButtons[index];
     }
+
     async clickRandomWomenTopsAddToWishListButton(index) {
         const addToWishListButton =  await this.getAllWomenTopsAddToMyWishListButtons();
         await addToWishListButton[index].click();
-
         return new WishListPage(this.page);
     }
+
     async clickRandomAddToWishListButtonAndSignIn(index) {
         const addToWishListButton =  await this.getAllWomenTopsAddToMyWishListButtons();
         await addToWishListButton[index].click();
-
         return new SignInPage(this.page);
     }
+
     async clickTeesCategoryShoppingOptions() {
       await this.locators.getTeesCategoryShoppingOptions().click();
       return this;
@@ -101,27 +103,25 @@ class TopsWomenPage {
     }
     async clickDisplayModeGrid() {
         await this.locators.getDisplayModeGrid().click()
-
         return this.page;
     }
+
     async clickDisplayModeList() {
         await this.locators.getDisplayModeList().click()
-
         return this.page;
     }
+
     async getRandomWomenTopsItemName(index) {
         const womenTopsItemName = await this.locators.getWomenTopsItemsNames(index).innerHTML();
         const itemName = womenTopsItemName.replace('\n','').trim();
-
         return itemName;
     }
+
     async getRandomWomenTopsItemPrice(index) {
         const womenTopsItemPrice = await this.locators.getWomenTopsItemPrices(index).innerHTML();
         const itemPrice = womenTopsItemPrice.replace('\n','').trim();
-
         return itemPrice;
     }
-
  }
 
 export default TopsWomenPage;

@@ -26,19 +26,16 @@ class MenPage {
 
     async clickBeadcrumbsMenuHome() {
         await this.locators.breadcrumbsMenuHome().click();
-
         return new HomePage(this.page);
     }
 
     async clickMenHotSellersName(productsName) {
         await this.locators.getMenHotSellersName(productsName).click();
-
         return new MenHotSellersPage(this.page);
     }
 
     async clickBottomsSideMenuLink() {
         await this.locators.getBottomsSideMenuLink().click();
-
         return new MenBottomsPage(this.page);
     }
 

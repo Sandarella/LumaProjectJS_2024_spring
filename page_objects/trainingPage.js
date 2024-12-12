@@ -21,28 +21,23 @@ class TrainingPage {
 	
 	async clickBreadcrumbMenuHome() {
 		await this.locators.getBreadcrumbMenuHome().click();
-	
 		return this.page;
 	}
 
 	async clickVideoDownloadLink() {
 		await this.locators.getTrainingVideoDownloadLink().click();
-	
 		return  new VideoDownloadPage(this.page);
 	}
 
 	async clickTrainingCompareButton() {
 		await this.locators.getTrainingCompareButton().click();
-	
 		return new CompareProductsPage(this.page);
 	}
 
 	async clickGoToWishListLink() {
 		await this.locators.getGoToWishListLink().click();
-	
 		return this.page;
 	}
-
 }
 
 export default TrainingPage;

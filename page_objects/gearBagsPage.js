@@ -24,38 +24,32 @@ class GearBagsPage {
 
     async hoverPushItMessengerItem() {
         await this.locators.getPushItMessengerItem().hover();
-
         return this;
     } 
 
 	 async clickPushItMessengerItem() {
 		await this.locators.getPushItMessengerItem().click();
-
 		return new PushItMessengerBagPage(this.page);
   } 
 
     async clickgetPushItMessengerItemAddtoCampare() {
         await this.locators.getPushItMessengerItemAddtoCampare().click();
-
         return this;
     }
 
     async clickTrainingLink() {
         await this.locators.getTrainingLink().click();
-
         return new TrainingPage(this.page);
     }
 
     async clickMaterialOption() {
         await this.locators.getMaterialOption().click();
         await this.locators.getMateialLeather().waitFor();
-
         return this;
     }
 
     async getMaterialItemNameText(idx) {
         const text = (await this.locators.getMateialItemList().nth(idx).innerText()).split(' ')[0];
-
         return text;
     }
 
@@ -65,7 +59,6 @@ class GearBagsPage {
 
     async clickMaterialLeather() {
         await this.locators.getMateialLeather().click();
-
         return this;
     }
 
@@ -75,13 +68,11 @@ class GearBagsPage {
 
     async clickOneProduct(idx) {
         await this.locators.getProductItamList().nth(idx).click();
-
         return new BagItemPage(this.page);
     }
 
     async clickListMode() {
         await this.locators.getListMode().click();
-
         return this;
 
     }

@@ -17,7 +17,6 @@ class WomenTopsPage  {
 
     async clickStyleDropDownMenu() {
         await this.locators.getStyleDropDownMenu().click();
-
         return this;
     }
 }

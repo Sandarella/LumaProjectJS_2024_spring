@@ -23,19 +23,18 @@ import { FIRST_NAME,
 import MyAccountPage from "../../page_objects/myAccountPage.js";
 import SignInPage from "../../page_objects/signInPage.js";
 
-
+let homePage, createAccountPage, myAccountPage, signInPage;
 
 test.describe('createAccuntPage.spec', () => {
     test.beforeEach(async ({ page }) => {
-        const homePage = new HomePage(page);
+        homePage = new HomePage(page);
+        createAccountPage = new CreateAccountPage(page);
+        myAccountPage = new MyAccountPage(page);
+        signInPage = new SignInPage(page)
 
         await homePage.open();
     });
     test('Check that user can possible to create account with entered all valid fields', async ({ page }) => {
-        const homePage = new HomePage(page);
-        const createAccountPage = new CreateAccountPage(page);
-        const myAccountPage = new MyAccountPage(page);
-
         await homePage.clickCreateAccountLink();
         await createAccountPage.clickFirstNameField();
         await createAccountPage.fillFirstNameField(FIRST_NAME);
@@ -53,19 +52,12 @@ test.describe('createAccuntPage.spec', () => {
        await expect(myAccountPage.locators.getThanksMessage()).toHaveText(THANKS_MESSAGE);
     });
 
-    test.skip('RF_TC 10.3.1_13 Registration/Create Account as a new user ', async({page})=>{
-        const homePage = new HomePage(page)
-        const signInPage = new SignInPage(page)
-        const createAccountPage = new CreateAccountPage(page)
-        const myAccountPage = new MyAccountPage(page)
-
+    test('RF_TC 10.3.1_13 Registration/Create Account as a new user ', async({page})=>{
         await homePage.clickSignInLink()
-
         await expect(page).toHaveURL(BASE_URL + SIGN_IN_END_POINT)
         await expect(signInPage.locators.getCreateAnAccountButton()).toHaveText(BUTTON_REGISTRATION_TITLE)
 
         await signInPage.clickCreateAnAccountButton()
-
         await expect(page).toHaveURL(BASE_URL + CUSTOMER_ACCOUNT_CREATE_END_POINT)
         await expect(createAccountPage.locators.getCreateAccountHeader()).toHaveText(CREATE_ACCOUNT_PAGE_HEADER)
 
@@ -84,7 +76,6 @@ test.describe('createAccuntPage.spec', () => {
 
     test('Check that all required fields are presented and empty in "Create New Customer Account" form', 
     async ({ page }) => {
-        const homePage = new HomePage(page);
         const createAccountPage = await homePage.clickCreateAccountLink();
 
         expect(await createAccountPage.getArrayOfFormLabels()).toEqual(CREATE_ACCOUNT_FORM_LABELS);
@@ -92,7 +83,6 @@ test.describe('createAccuntPage.spec', () => {
     })
 
     test("Check that user can't register with password less than 8 characters", async ({ page }) => {
-        const homePage = new HomePage(page);
         const createAccountPage = await homePage.clickCreateAccountLink();
 
         await createAccountPage.fillFirstNameField(NEW_USER_DATA.firstName);
@@ -108,7 +98,6 @@ test.describe('createAccuntPage.spec', () => {
 
     NEW_USER_DATA.passwordWithSpaces.spacesLocation.forEach((condition, indx) => {
         test(`Verify that user can't register with password that ${condition} with spaces`, async ({ page }) => {
-            const homePage = new HomePage(page);
             const createAccountPage = await homePage.clickCreateAccountLink();
 
             await createAccountPage.fillFirstNameField(NEW_USER_DATA.firstName);

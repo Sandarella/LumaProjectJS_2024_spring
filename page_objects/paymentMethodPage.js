@@ -12,13 +12,11 @@ class PaymentMethodPage {
 
     async waitPlaceOrderButton() {
         await this.locators.getPlaceOrderButton().waitFor();
-
         return this;
     }
 
     async clickPlaceOrderButton() {
         await this.locators.getPlaceOrderButton().click();
-
         return new CheckoutOnepageSuccessPage(this.page);
     }
 }

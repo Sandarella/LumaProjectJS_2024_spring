@@ -65,25 +65,19 @@ class HomePage {
     getGearMenuItem: () => this.page.getByRole("menuitem", { name: "Gear" }),
     getGearBagsSubmenuItem: () => this.page.getByRole('menuitem', { name: 'Bags' }),
     getGearWatchesSubmenuItem: () => this.page.getByRole("menuitem", { name: "Watches" }),
-    getFirstCardName: () => this.page.locator('a[title="Radiant Tee"]'),
     getNavigationMenuItemsList: () => this.page.getByRole('navigation').getByRole('listitem'),
     getOrdersAndReturnsLink: () => this.page.locator('.page-wrapper footer li:has-text("Orders and Returns")'),
     getGearBagsSubmenuItem: () => this.page.locator("#ui-id-25"),
     getGearBagsLink: () => this.page.getByRole("menuitem").filter({ hasText: "Bags" }),
     getFirstCardReviews: () => this.page.locator('a.action.view[href*="radiant-tee"]'),
-    getSecondCardName: () => this.page.locator('a[title="Breathe-Easy Tank"]'),
     getSecondCardImage: () => this.page.getByAltText('Breathe-Easy Tank'),
     getWomenTopsLink: () => this.page.getByRole('menuitem', { name: 'Tops' }),    
     getSecondCardReviews: () => this.page.locator('a[class="action view"][href*="breathe-easy-tank"]'),
     getThirdCardImage: () => this.page.getByAltText('Argus All-Weather Tank'),
-    getThirdCardName: () => this.page.locator('a[title="Argus All-Weather Tank"]'),
-    getFourthCardName: () => this.page.getByAltText('Hero Hoodie'),
     getFourthCardImage: () => this.page.getByAltText('Hero Hoodie'),
     getFifthCardImage: () => this.page.getByAltText('Fusion Backpack'),
-    getFifthCardName: () => this.page.locator('a[title="Fusion Backpack"]'),
     getFifthCardReviews: () => this.page.locator('.action.view[href*="fusion-backpack"]'),
     getSixthCardImage: () => this.page.getByAltText('Push It Messenger Bag'),
-    getSixthCardName: () => this.page.locator('a[title="Push It Messenger Bag"]'),
     getSixthCardReviews: () => this.page.locator('a[class="action view"][href*="push-it-messenger-bag"]'),
     getHotSellersCardLink: () => this.page.locator('.product-item-photo'),
     getGreetingName: (name) => this.page.locator('[class="panel header"]').filter({ hasText: `Welcome, ${name}`}),
@@ -93,8 +87,44 @@ class HomePage {
     getMainMenuLinks: () => this.page.locator('.level-top.ui-corner-all'),
     getHotSellersSection: () => this.page.getByRole('heading', { name: 'Hot Sellers' }),
     getMainMenuLinks: () => this.page.locator('.level-top.ui-corner-all'),
-    getWomenJacketslink: () => this.page.getByRole('menuitem', { name: 'Jackets' })
+    getWomenJacketslink: () => this.page.getByRole('menuitem', { name: 'Jackets' }),
+    getFirstCardName: () => this.page.locator('a[title="Radiant Tee"]'),
+    getSecondCardName: () => this.page.locator('a[title="Breathe-Easy Tank"]'),
+    getThirdCardName: () => this.page.locator('a[title="Argus All-Weather Tank"]'),
+    getFourthCardName: () => this.page.getByAltText('Hero Hoodie'),
+    getFifthCardName: () => this.page.locator('a[title="Fusion Backpack"]'),
+    getSixthCardName: () => this.page.locator('a[title="Push It Messenger Bag"]'),
   };
+
+  async clickCardName1() {
+    await this.locators.getFirstCardImage().click();
+    return new RadiantTeePage(this.page);
+  }
+
+  async clickCardName2() {
+    await this.locators.getSecondCardName().click();
+    return new BreatheEasyTankPage(this.page)
+  }
+
+  async clickCardName3() {
+    await this.locators.getThirdCardName().click();
+    return new ArgusAllWeatherTankPage(this.page)
+  }
+
+  async clickCardName4() {
+    await this.locators.getFourthCardName().click();
+    return new HeroHoodiePage(this.page)
+  }
+
+  async clickCardName5() {
+    await this.locators.getFifthCardName().click();
+    return new FusionBackpackPage(this.page)
+  }
+
+  async clickCardName6() {
+    await this.locators.getSixthCardName().click();
+    return new PushItMessengerBagPage(this.page)
+  }
 
   async open() {
     await this.page.goto("/");
@@ -104,25 +134,21 @@ class HomePage {
 
   async clickWhatsNewLink() {
     await this.locators.getWhatsNewLink().click();
-
     return new WhatsNewPage(this.page);
   }
 
   async clickWomenLink() {
     await this.locators.getWomenLink().click();
-
     return new WomenPage(this.page);
   }
 
   async clickMenLink() {
     await this.locators.getMenLink().click();
-
     return new MenPage(this.page);
   }
 
   async clickTrainingLink() {
     await this.locators.getTrainingLink().click();
-
     return new TrainingPage(this.page);
   }
 
@@ -135,13 +161,11 @@ class HomePage {
 
   async clickMenBottomsLink() {
     await this.locators.getMenBottomsLink().click();
-
     return new MenBottomsPage(this.page);
   }
 
   async fillSearchInputField(searchQuerry) {
     await this.locators.getSearchInputField().fill(searchQuerry);
-
     return this;
   }
 
@@ -156,105 +180,83 @@ class HomePage {
 
   async clearSearchInputField() {
     await this.locators.getSearchInputField().clear();
-
     return this;
   }
 
   async clickRadiantTee() {
     await this.locators.getRadiantTee().click();
-
     return new RadiantTeePage(this.page);
   }
 
   async clickCreateAccountLink() {
     await this.locators.getCreateAccountLink().click();
-
     return new CreateAccountPage(this.page);
   }
 
   async clickMenTopsLink() {
     await this.locators.getMenTopsLink().click();
-
     return new MenTopsPage(this.page)
   }
 
   async clickBottomsWomenLink() {
     await this.locators.getBottomsWomenLink().click();
-
     return new BottomsWomenPage(this.page);
   }
 
   async hoverWomenMenuitem() {
     await this.page.waitForTimeout(3000);
     await this.locators.getWomenLink().hover();
-
     return this;
   }
 
   async clickSearchTermPopularLink() {
     await this.locators.getSearchTermPopularLink().click();
-
     return new SearchTermPopularPage(this.page);
   }
 
-  async clickFirstCardImage() {
+  async clickCardImage1() {
     await this.locators.getFirstCardImage().click();
-
     return new RadiantTeePage(this.page);
   }
 
   async clickSignInLink() {
     await this.locators.getSignInLinck().click();
-
     return new SignInPage(this.page);
   }
 
   async clickSaleLink() {
     await this.locators.getSaleLink().click();
-
     return new SalePage(this.page);
   }
 
   async clickHotSellersXSSizeButton(ind) {
     await this.locators.getHotSellersXSSizeButton().nth(ind).click();
-
     return this;
   }
 
   async clickHotSellersBlueColor(ind) {
     await this.locators.getHotSellersBlueColor().nth(ind).click();
-
     return this;
   }
 
   async clickHotSellersAddToCartButton(ind) {
     await this.locators.getHotSellersAddToCartButton().nth(ind).click();
-
     return this;
   }
 
   async hoverWomenLink() {
     await this.locators.getWomenLink().hover();
-
     return this;
   }
 
   async hoverGearMenuItem() {
     await this.locators.getGearMenuItem().hover();
-
     return this;
   }
 
   async clickGearWatchesSubmenuItem() {
     await this.locators.getGearWatchesSubmenuItem().click();
-
     return new GearWatchesPage(this.page);
-  }
-
-  async clickFirstCardName() {
-    await this.locators.getFirstCardImage().click();
-
-    return new RadiantTeePage(this.page);
   }
 
   getFooter() {
@@ -263,134 +265,95 @@ class HomePage {
 
   async clickGearMenuItem() {
     await this.locators.getGearMenuItem().click();
-
     return new GearPage(this.page);
   }
 
   async clickGearBagsSubmenuItem() {
     await this.locators.getGearBagsSubmenuItem().click();
-
     return new GearBagsPage(this.page);
   }
 
   async clickOrdersAndReturnsLink() {
     await this.locators.getOrdersAndReturnsLink().click();
-
     return new OrdersAndReturnsPage(this.page);
   }
 
   async clickGearBags() {
     await this.locators.getGearBagsLink().click();
-
     return new GearBagsPage(this.page);
   }
 
-  async clickFirstCardReviews() {
+  async clickCardReviews1() {
     await this.locators.getFirstCardReviews().click();
-
     return new RadiantTeePage(this.page)
   }
 
-  async clickSecondCardName() {
-    await this.locators.getSecondCardName().click();
-
-    return new BreatheEasyTankPage(this.page)
-  }
-
-  async clickSecondCardImage() {
+  async clickCardImage2() {
     await this.locators.getSecondCardImage().click();
-
     return new BreatheEasyTankPage(this.page)
   }
 
   async clickWomenTopsLink() {
     await this.locators.getWomenTopsLink().click();
-
     return new WomenTopsPage(this.page)
   }
   
-  async clickSecondCardReviews() {
+  async clickCardReviews2() {
     await this.locators.getSecondCardReviews().click();
-
     return new BreatheEasyTankPage(this.page)
   }
 
-  async clickThirdCardImage() {
+  async clickCardImage3() {
     await this.locators.getThirdCardImage().click();
-    
     return new ArgusAllWeatherTankPage(this.page)
   }
 
-  async clickThirdCardName() {
-    await this.locators.getThirdCardName().click();
-
-    return new ArgusAllWeatherTankPage(this.page)
-  }
-
-  async clickFourthCardName() {
-    await this.locators.getFourthCardName().click();
-
-    return new HeroHoodiePage(this.page)
-  }
-
-  async clickFourthCardImage() {
+  async clickCardImage4() {
     await this.locators.getFourthCardImage().click();
-
     return new HeroHoodiePage(this.page)
   }
 
   async clickTopsWomenLink() {
     await this.locators.getWomenTopsLink().click();
-
     return new TopsWomenPage(this.page)
   }
 
   async clickOnWomenTopsLink() {
     await this.locators.getWomenTopsLink().click();
-
     return new TopsWomenPage(this.page);
   }
 
   async hoverOverWomenMenuItem() {
     await this.locators.getWomenItemLink().hover();    
-
     return this;
   }
 
-  async clickFifthCardImage() {
+  async clickCardImage5() {
     await this.locators.getFifthCardImage().click();
-
-    return new FusionBackpackPage(this.page)
-  }
-  
-  async clickFifthCardName() {
-    await this.locators.getFifthCardName().click();
-
     return new FusionBackpackPage(this.page)
   }
 
-  async clickFifthCardReviews() {
+  async clickCardReviews5() {
     await this.locators.getFifthCardReviews().click();
-
     return new FusionBackpackPage(this.page)
   }
   
-  async clickSixthCardImage() {
+  async clickCardImage6() {
     await this.locators.getSixthCardImage().click();
-
     return new PushItMessengerBagPage(this.page)
   }
 
-  async clickSixthCardName() {
-    await this.locators.getSixthCardName().click();
-
-    return new PushItMessengerBagPage(this.page)
-  }
-
-  async clickSixthCardReviews() {
+  async clickCardReviews6() {
     await this.locators.getSixthCardReviews().click();
-
     return new PushItMessengerBagPage(this.page)
+  }
+
+  async clickCardReviews3() {
+    return this
+  }
+
+  async clickCardReviews4() {
+    return this
   }
 
   async getGreetingText(name) {
@@ -399,53 +362,44 @@ class HomePage {
 
   async clickWelcomeDropdown() {
     await this.locators.getWelcomeDropdown().click();
-
     return this;
   }
 
   async clickMyAccountLink() {
     await this.locators.getMyAccountLink().click()
-
     return new MyAccountPage(this.page);
   }
   async clickHotSellersCardLink(ind) {
     await this.locators.getHotSellersCardLink().nth(ind).click();
-
     return new RadiantTeePage(this.page)
   }
 
   async clickGearFitnessEquipmentSubmenuItem() {
     await this.locators.getGearFitnessEquipmentSubmenuItem().click();
-
     return new GearFitnessPage(this.page);
   }
   
   async clickMainMenuLinks(i) {
     await this.locators.getMainMenuLinks().nth(i).click();    
-  
   }
 
   async scrollToHotSellerSection() {
     await this.locators.getHotSellersSection().scrollIntoViewIfNeeded();
-    
   }
 
   async clickRandomCard() {
     const hotCards = await this.page.locator('.product-item-info').all();
     await hotCards[getRandomNumber(hotCards.length)].click();
-
     return new ProductCardPage(this.page);
   }
 
   async clickWomenJacketsLink() {
     await this.locators.getWomenJacketslink().click();
-
     return new JacketsWomenPage(this.page);
   }
 
   async hoverWomenTopsLink() {
     await this.locators.getWomenTopsLink().hover();
-
     return this;
   }
 }

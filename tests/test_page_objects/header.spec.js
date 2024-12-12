@@ -12,18 +12,19 @@ import {
 } from '../../helpers/testData.js'
 import ShippingPage from '../../page_objects/shippingPage.js';
 
+let homePage, header, shippingPage
+
 test.describe('header.spec', () => {
 
     test.beforeEach(async ({ page }) => {
-        const homePage = new HomePage(page);
-        const header = new Header(page);
+        homePage = new HomePage(page);
+        header = new Header(page);
+        shippingPage = new ShippingPage(page);
+
         await homePage.open();
     })
 
     test('Verify quantity and total cost in the shopping cart', async ({ page }) => {
-        const homePage = new HomePage(page);
-        const header = new Header(page);
-
         const radiantTeePage = await homePage.clickRadiantTee();
         await radiantTeePage.clickRadiantTeeSizeS();
         await radiantTeePage.clickRadiantTeeColorBlue();
@@ -41,15 +42,10 @@ test.describe('header.spec', () => {
     })
 
     test('Verify the Create an Account link is displayed on the main page in the header', async ({ page }) => {
-        const homePage = new HomePage(page);
         await expect(homePage.locators.getCreateAccountLink()).toBeVisible();
     })
 
     test('"Proceed to Checkout" button in the Shopping Cart Modal Window is visible, clickable, and redirects to the Shipping Page', async ({ page }) => {
-        const homePage = new HomePage(page);
-        const header = new Header(page);
-        const shippingPage = new ShippingPage(page);
-
         const radiantTeePage = await homePage.clickRadiantTee();
         await radiantTeePage.clickRadiantTeeSizeS();
         await radiantTeePage.clickRadiantTeeColorBlue();
@@ -67,18 +63,10 @@ test.describe('header.spec', () => {
     })
 
     test('verify display the shopping cart icon', async ({ page }) => {
-        const homePage = new HomePage(page);
-        const header = new Header(page);
-
-        await homePage.open();
         await expect(header.locators.getShoppingCart()).toBeVisible();
     })
 
     test('verify the modal windows opens on click on shopping cart icon', async ({ page }) => {
-        const homePage = new HomePage(page);
-        const header = new Header(page);
-
-        await homePage.open();
         await header.locators.getShoppingCart().click();
 
         await expect(header.locators.getMiniCart()).toBeVisible();
@@ -86,19 +74,12 @@ test.describe('header.spec', () => {
     })
 
     test('verify display empty shopping cart message', async ({ page }) => {
-        const homePage = new HomePage(page);
-        const header = new Header(page);
-
-        await homePage.open();
         await header.locators.getShoppingCart().click();
 
         await expect(header.locators.getEmptyCardMessage()).toHaveText(EMPTY_CARD_MESSAGE);
     })
 
     test('<Header/Shopping Cart Icon> Verify a counter with the number of items in the cart is displayed after adding new product', async ({ page }) => {
-        const homePage = new HomePage(page);
-        const header = new Header(page);
-
         await homePage.clickHotSellersXSSizeButton(0);
         await homePage.clickHotSellersBlueColor(0);
         await homePage.clickHotSellersAddToCartButton(0);
@@ -108,14 +89,10 @@ test.describe('header.spec', () => {
     })
 
     test('<Header/Header logo> Validate website has store logo', async ({ page }) => {
-        const header = new Header(page);
-
         await expect(header.locators.getLogoLink()).toBeVisible();
     })
+    
     test('Verify only shopping cart icon is displayed if no items in the shopping cart', async ({ page }) => {
-        const homePage = new HomePage(page);
-        const header = new Header(page);
-
         await header.locators.getShoppingCart()
         await header.locators.getCounterNumber();
 
@@ -124,10 +101,6 @@ test.describe('header.spec', () => {
     })
 
     test('Verify the modal windows can close', async ({ page }) => {
-        const homePage = new HomePage(page);
-        const header = new Header(page);
-
-        await homePage.open();
         await header.clickShoppingCartIcon();
         await header.clickCrossIconModalWindowShoppingCart();
 
@@ -135,7 +108,6 @@ test.describe('header.spec', () => {
     })
 
     test('Gear drop-down menu contains: Bags, Fitness equipment, Watches items', async ({ page }) => {
-        const header = new Header(page);
         await header.hoverGearMenu();
 
         await expect(header.locators.getGearSubMenu()).toBeVisible();
@@ -143,7 +115,6 @@ test.describe('header.spec', () => {
     });
 
     test('User could navigate from the Gear menu to the Gear page', async ({ page }) => {
-        const header = new Header(page);
         await header.clickGearMenu();
 
         await expect(page).toHaveURL(BASE_URL + GEAR_PAGE_END_POINT);

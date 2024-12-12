@@ -3,28 +3,29 @@ import FusionBackpackPage from "../../page_objects/fusionbackpackPage.js";
 import HomePage from "../../page_objects/homePage.js"
 import { IMAGE_BLUE_URL_REGEX, IMAGE_GRAY_URL_REGEX, ZOOM_COUNT } from "../../helpers/testFusionbackpackData.js";
 
+let homePage, fusionBackpackPage
+
 test.describe('fusionBackpackPage.spec', () => {
     test.beforeEach(async ({page}) => {
-        const homePage = new HomePage(page);
+        homePage = new HomePage(page);
+        fusionBackpackPage = new FusionBackpackPage(page)
+
         await homePage.open();
-        await homePage.clickFifthCardImage();
+        await homePage.clickCardImage5();
     })
 
     test('photo Product in full screen', async ({page}) => {
-        const fusionBackpackPage = new FusionBackpackPage(page)
         await fusionBackpackPage.clickProductMainImage();
         await expect(fusionBackpackPage.locators.getFusionBackpackFullScreen()).toBeVisible();
     })
 
     test('slide photo in home mode', async ({page}) => {
-        const fusionBackpackPage = new FusionBackpackPage(page);
         await expect(fusionBackpackPage.locators.getFusionBackpackActiveImage()).toHaveAttribute("src", /gray/);
         await fusionBackpackPage.clickSlideNextButton();
         await expect(fusionBackpackPage.locators.getFusionBackpackActiveImage()).toHaveAttribute("src", /blue/);
     })
 
     test('slide photo in full screen mode', async ({page}) => {
-       const fusionBackpackPage = new FusionBackpackPage(page);
        await fusionBackpackPage.clickActiveImage();
        await expect(fusionBackpackPage.locators.getFusionBackpackFullScreen()).toBeVisible();
        await expect(fusionBackpackPage.locators.getFusionBackpackFullScreen()).toHaveAttribute("src", IMAGE_GRAY_URL_REGEX);
@@ -33,7 +34,6 @@ test.describe('fusionBackpackPage.spec', () => {
     })
 
     test('zoomPhoto in full screen', async ({page}) => {
-        const fusionBackpackPage = new FusionBackpackPage(page);
         await fusionBackpackPage.clickActiveImage();
         await expect(fusionBackpackPage.locators.getFusionBackpackFullScreen()).toBeVisible();
         for (let i=1; i<=ZOOM_COUNT; i++){
@@ -55,7 +55,6 @@ test.describe('fusionBackpackPage.spec', () => {
     })
 
     test('exiting full screen mode clicking on the close button', async ({page}) =>{
-        const fusionBackpackPage = new FusionBackpackPage(page);
         await fusionBackpackPage.clickActiveImage();
         await expect(fusionBackpackPage.locators.getFusionBackpackFullScreen()).toBeVisible();
         await fusionBackpackPage.clickCloseButton();
@@ -63,7 +62,6 @@ test.describe('fusionBackpackPage.spec', () => {
     })
 
     test('exiting full screen mode pressing Escape', async ({page}) => {
-        const fusionBackpackPage = new FusionBackpackPage(page);
         await fusionBackpackPage.clickActiveImage();
         await expect(fusionBackpackPage.locators.getFusionBackpackFullScreen()).toBeVisible();
         await page.keyboard.press('Escape');

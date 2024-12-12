@@ -41,13 +41,12 @@ class MenBottomsPage {
 
         getMenBottomsClearCategoryFilterLocator: () => this.page.locator('.action.clear.filter-clear'),
         getMenBottomsCategoryListOfItemsLocator: () => this.page.locator('#narrow-by-list > .active > .filter-options-content > ol > li'),
-        getMenBottomsCategoryPants: () => this.page.locator(".filter-options li a[href$='bottoms-men.html?cat=18']"),
+        getMenBottomsCategoryPants: () => this.page.locator('a[href$="bottoms-men.html?cat=18"]'),
         getMenBottomsClearAllButton: () => this.page.getByRole('link', {name: 'Clear All'}),
     }
 
     async clickBreadcrumbsMenuMen() {
         await this.locators.breadcrumbsMenuMen().click();
-
         return new MenPage(this.page);
     }
 
@@ -60,62 +59,57 @@ class MenBottomsPage {
         const position = await this.page.$eval('.sidebar.sidebar-main', sidebar => {
             return window.getComputedStyle(sidebar).float;
           });
-
           return position;
     }
 
     async hoverMenBottomsCategory() {
         await this.locators.getMenBottomsCategory().hover();
-
         return this.page;
     }
 
     async clickMenBottomsCategory() {
         await this.locators.getMenBottomsCategory().click();
-
         return this.page;
     }
 
     async hoverMenBottomsSubCategory(i) {
         await this.locators.getMenBottomsSubCategory([i]).hover();
-
         return this.page;
     }
 
     async clickMenBottomsSubCategory(i) {
         await this.locators.getMenBottomsSubCategory([i]).click();
-
         return this.page;
     }
 
     async clickMenBottomsFilterList(){
         await this.locators.getMenBottomsFilterListIcon().click();
-
         return this.page;
     }
 
     async waitForTimeout(timeout) {
         await this.page.waitForTimeout(timeout);
-
         return this.page;
     }
 
     async clickMenBottomsClearCategoryFilter() {
         await this.locators.getMenBottomsClearCategoryFilterLocator().click();
-
         return this.page;
     }
 
     async clickMenBottomsCategoryPants() {
         await this.locators.getMenBottomsCategoryPants().click();
-
         return this.page;
     }
 
     async clickMenBottomsClearAllButton() {
         await this.locators.getMenBottomsClearAllButton().click();
-
         return this.page;
+    }
+
+    async waitForPageToLoad() {
+        await this.page.waitForLoadState('load'); // Чекаємо завантаження сторінки
+        await this.page.locator('.page-title').waitFor({ state: 'visible' }); // Чекаємо заголовок
     }
 }
 

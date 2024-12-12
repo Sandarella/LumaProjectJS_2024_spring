@@ -8,27 +8,23 @@ class JacketsWomenPage {
     locators = {
         getWomenJacketsName: () => this.page.getByRole('link', { name: `${WOMEN_JACKETS_NAME}` }).first(),
         getOlivia14ZipLightJacket: () => this.page.getByRole('link', { name: 'Olivia 1/4 Zip Light Jacket' }).first(),
-        getAddToCompareButton : () => this.page.locator('li').filter({ hasText: 'Olivia 1/4 Zip Light Jacket' }).getByLabel('Add to Compare'),
-        //getMessageAddedProductComparisonList: () => this.page.locator('div').filter({ hasText: 'Product comparison list' }).first(),
-        getMessageAddedProductComparisonList: () => this.page.locator('div.messages a').first()
-        
-
+        getMessageAddedProductComparisonList: () => this.page.locator('div.messages a').first(),
+        getListJacketItems: () => this.page.locator('.product-image-wrapper'),
+        getAddToCompareButtonFirstItem : () => this.page.locator('.action.tocompare').first(),
     }
+
     async clickWomenJacketsName() {
         await this.locators.getWomenJacketsName().click();
-
         return new InezFullZipJacketPage(this.page);
     }
 
-    async hoverOlivia14ZipLightJacket() {
-        await this.locators.getOlivia14ZipLightJacket().hover();
-
-        return this;
+    async hoverFirstJacketItem() {
+        await this.locators.getListJacketItems().first().hover()
+        return this
     }
 
-    async clickAddToCompareButton() {
-        await this.locators.getAddToCompareButton().click();
-
+    async clickAddToCompareButtonFirstItem() {
+        await this.locators.getAddToCompareButtonFirstItem().click({force: true})
         return this; 
     }
 }

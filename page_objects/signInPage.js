@@ -14,7 +14,7 @@ class SignInPage {
         getButtonSignIn: () => this.page.getByRole('button', {name: 'Sign In'}),
         getGreetingElement: () => this.page.locator('body > div.page-wrapper > header > div.panel.wrapper > div > ul > li.greet.welcome > span'),
         getTabDropdown: () => this.page.getByRole('banner').locator('button').filter({hasText: 'Change'}),
-        getDropdownWishList: () => this.page.getByRole('banner').getByText('My Account My Wish List Sign'),
+        getDropdownWishList: () => this.page.locator('.customer-welcome.active .header.links'),
         getSignOutlinck: () => this.page.getByRole('link', {name: 'Sign Out'}),
         getMessageSignedOut: () => this.page.getByText('You are signed out'),
         getPageHeader: () => this.page.getByRole('heading').first(),
@@ -48,25 +48,21 @@ class SignInPage {
 
     async clickButtonSignIn() {
         await this.locators.getButtonSignIn().click();
-        // return
         return new HomePage(this.page)
     }
 
     async fillEmailInputField(myEmail) {
         await this.page.getByLabel('Email', {exact: true}).click();
         await this.locators.getfieldEmail().fill(myEmail);
-
         return this;
     }
 
     async fillPasswordInputField(myPassword) {
         await this.locators.getFieldPassword().focus();
         await this.locators.getFieldPassword().fill(myPassword);
-
         return this;
     }
     async welcomeUser() {
-        // return this.locators.getGreetingElement()
         await this.locators.getGreetingElement();
         return getGreetingElement.isVisible();
 
@@ -86,7 +82,6 @@ class SignInPage {
     async clickButtonSignInAndGoToWishlist() {
         await this.locators.getButtonSignIn().focus();
         await this.locators.getButtonSignIn().click();
-
         return new WishListPage(this.page)
     }
 }

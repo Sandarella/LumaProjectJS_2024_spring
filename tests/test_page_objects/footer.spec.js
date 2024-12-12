@@ -10,39 +10,37 @@ import {
     ORDERS_AND_RETURNS_PAGE_FIELDS, NOTES_PAGE_URL
 } from "../../helpers/testData.js";
 
+let homePage, footer, searchTermPopularPage
+
 test.describe('footer.spec', () => {
     test.beforeEach(async ({ page }) => {
-        const homePage = new HomePage(page);
+        homePage = new HomePage(page);
+        footer = new Footer(page);
+        searchTermPopularPage = new SearchTermPopularPage(page)
 
         await homePage.open();
     })
 
     test('Verify visibility of footer', async ({ page }) => {
-        const footer = new Footer(page);
-        
         footer.locators.getFooter().waitFor();
-        expect(footer.locators.getFooter()).toBeVisible();
+        expect(footer.locators.getFooter()).toBeVisible()
     })
 
     test('link "Search Terms" is clickabel', async ({ page }) => {
-        const homePage = new HomePage(page);
-        const searchTermPopularPage = new SearchTermPopularPage(page)
-
-        await homePage.open();
         await homePage.clickSearchTermPopularLink();
 
         await expect(page).toHaveURL(BASE_URL + SEARCH_TERMS_POPULAR_PAGE_END_POINT);
         await expect(searchTermPopularPage.locators.getSearchTermPopularHeader()).toContainText(SEARCH_TERMS_POPULAR_PAGE_HEADER);
     })
 
-    test('Verify that "Search terms" link redirects to the "Popular Search Terms" page', async ({ page }) => {
-        const searchTermPopularPage = await new HomePage(page)
-            .getFooter()
-            .clickSearchTerms();
+    test('_Verify that "Search terms" link redirects to the "Popular Search Terms" page', async ({ page }) => {
+        const searchTermPopularPage = await homePage.getFooter()
+                                                    .clickSearchTerms();
         await expect(page).toHaveURL(BASE_URL + SEARCH_TERMS_POPULAR_PAGE_END_POINT);
         await expect(page).toHaveTitle(SEARCH_TERMS_POPULAR_PAGE_HEADER);
 
-        await searchTermPopularPage.getHeader().clickLogoLink();
+        await searchTermPopularPage.getHeader()
+                                   .clickLogoLink();
         await expect(page).toHaveURL(BASE_URL)
 
         const list = await new HomePage(page).locators.getNavigationMenuItemsList();
@@ -55,15 +53,11 @@ test.describe('footer.spec', () => {
     })
 
     test('Verify links visibility in the footer for logged-in user', async ({ page }) => {
-        const homePage = new HomePage(page);
-        await homePage.open();
-
         const signInPage = await homePage.clickSignInLink();
         await signInPage.fillFieldEmail();
         await signInPage.fillFieldPassword();
-
         await signInPage.clickButtonSignIn();
-        const footerPage = new Footer(page);
+
         await expect(footerPage.locators.getSearchTerms()).toBeVisible();
         await expect(footerPage.locators.getPrivacyAndCookiePolicyLink()).toBeVisible();
         await expect(footerPage.locators.getNotesLink()).toBeVisible();
@@ -72,7 +66,6 @@ test.describe('footer.spec', () => {
 
     FOOTER_LINK_NAME.forEach((linkName, idx) => {
         test(`Verify ${linkName} is clickable and redirects logged-in user to the required page`, async ({ page }) => {
-            const homePage = new HomePage(page);
             const signInPage = await homePage.clickSignInLink();
             await signInPage.fillFieldEmail();
             await signInPage.fillFieldPassword();
@@ -84,15 +77,13 @@ test.describe('footer.spec', () => {
     })
 
     test('Link "Advanced Search" is clickable and redirectable', async ({ page }) => {
-        const footer = new Footer(page);
         const searchAdvancedPage = await footer.clickAdvancedSearchLink();
 
         await expect(page).toHaveURL(BASE_URL + SEARCH_ADVANCED_PAGE_END_POINT);
         await expect(searchAdvancedPage.locators.getPageHeader()).toHaveText(SEARCH_ADVANCED_PAGE_HEADER);
-      })
+    })
 
     test('Verify Notes link is clickable and redirects logged-in user to the required page', async ({page}) => {
-        const homePage = new HomePage(page);
         const signInPage = await homePage.clickSignInLink();
         await signInPage.fillFieldEmail();
         await signInPage.fillFieldPassword();
@@ -105,15 +96,14 @@ test.describe('footer.spec', () => {
     }) 
    
     test('"Order and Returns” link redirects to the page, and displays particular fields', async ({ page }) => {
-            const footerPage = new Footer(page);
-            const ordersAndReturnsPage = await footerPage.clickOrdersAndReturnsLink();
-            await expect(page).toHaveURL(BASE_URL + FOOTER_ORDERS_AND_RETURNS_PAGE_END_POINT);
-        
-            const fields = await footerPage.locators.getOrdersAndReturnsPageFields();
-        
-            for (let i = 0; i < ORDERS_AND_RETURNS_PAGE_FIELDS.length; i++) {
-                const field = fields[i];
-                await expect(field).toHaveText(ORDERS_AND_RETURNS_PAGE_FIELDS[i]);
-            }
-        });
+        const ordersAndReturnsPage = await footerPage.clickOrdersAndReturnsLink();
+        await expect(page).toHaveURL(BASE_URL + FOOTER_ORDERS_AND_RETURNS_PAGE_END_POINT);
+    
+        const fields = await footerPage.locators.getOrdersAndReturnsPageFields();
+    
+        for (let i = 0; i < ORDERS_AND_RETURNS_PAGE_FIELDS.length; i++) {
+            const field = fields[i];
+            await expect(field).toHaveText(ORDERS_AND_RETURNS_PAGE_FIELDS[i]);
+        }
+    });
  })
