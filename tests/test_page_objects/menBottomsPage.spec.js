@@ -37,7 +37,7 @@ let homePage
 
         await expect(page).toHaveURL(BASE_URL + MEN_BOTTOMS_PAGE_END_POINT);
 
-        await menBottomsPage.waitForTimeout(3000);
+        await menBottomsPage.waitForPageToLoad();
         await menBottomsPage.hoverMenBottomsCategory();
         await menBottomsPage.clickMenBottomsCategory();
         await page.waitForLoadState('load');
