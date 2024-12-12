@@ -3,14 +3,15 @@ import HomePage from "../../page_objects/homePage.js";
 import * as TEST_DATA from "../../helpers/testData.js";
 import * as TEST_MEN_DATA from "../../helpers/testMenData.js";
 
+let homePage
+
 test.describe('menPage.spec', () => {
     test.beforeEach(async ({ page }) => {
-        const homePage = new HomePage(page);
+        homePage = new HomePage(page);
         await homePage.open();
     });
 
     test('Menu/Men available to click, see clothes only for men', async ({ page }) => {
-        const homePage = new HomePage(page);
         const menPage = await homePage.clickMenLink();
 
         await expect(page).toHaveURL(TEST_DATA.BASE_URL + TEST_MEN_DATA.MEN_PAGE_END_POINT);
@@ -20,7 +21,6 @@ test.describe('menPage.spec', () => {
     });
 
     test('Men page contains Shop by category block which is located on the left side of the page', async ({ page }) => {
-        const homePage = new HomePage(page);
         const menPage = await homePage.clickMenLink();
 
         await expect(menPage.locators.getShopByCategoryBlock()).toBeVisible();
@@ -28,7 +28,6 @@ test.describe('menPage.spec', () => {
     });
 
     test('Category block contains sub-categories: Tops and Bottoms which are links in blue text', async ({ page }) => {
-        const homePage = new HomePage(page);
         const menPage = await homePage.clickMenLink();
 
         await expect(menPage.locators.getTopsSubCategoryLink()).toHaveCSS('color', TEST_DATA.MEN_PAGE_TOPS_SUB_CATEGORY_LINK_COLOR);
@@ -36,7 +35,6 @@ test.describe('menPage.spec', () => {
     });
 
     test('Tops and Bottoms sub-categories have a counter for items from the right side of the relevant link', async ({ page }) => {
-        const homePage = new HomePage(page);
         const menPage = await homePage.clickMenLink();
         const subCaregoriesInCategoryBlock = menPage.locators.getSubCaregoriesInCategoryBlock();
 
@@ -53,8 +51,6 @@ test.describe('menPage.spec', () => {
 
     TEST_MEN_DATA.HOT_SELLERS_NAME.forEach((productsName, idx) => {
         test(`Menu/Men/Hot Sellers Verify user can click on product's name and be redirected to the ${productsName} page`, async ({ page }) => {
-            const homePage = new HomePage(page);
-
             const menPage = await homePage.clickMenLink();
             const menHotSellersPage = await menPage.clickMenHotSellersName(productsName);
 
@@ -64,7 +60,6 @@ test.describe('menPage.spec', () => {
     });
 
     test('Verify redirection to Men-Bottoms page from Men page', async ({ page }) => {
-        const homePage = new HomePage(page);
         const menPage = await homePage.clickMenLink();
 
         await homePage.clickMenLink();
@@ -76,7 +71,6 @@ test.describe('menPage.spec', () => {
 
     for (const subCategory in TEST_DATA.MEN_PAGE_SUB_CATEGORY_ENDPOINT_URL) {
         test(`${subCategory} sub-category link led to the ${subCategory}-Men page`, async ({ page }) => {
-            const homePage = new HomePage(page);
             const subCategoryPageEndpointUrl = TEST_DATA.MEN_PAGE_SUB_CATEGORY_ENDPOINT_URL[subCategory];
 
             const menPage = await homePage.clickMenLink();
