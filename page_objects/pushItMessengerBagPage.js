@@ -8,8 +8,8 @@ class PushItMessengerBagPage {
   locators = {
     getTrainingLink: () => this.page.getByRole('menuitem', { name: 'Training' }),
     getMyWishList: () => this.page.getByRole('link', { name: 'Add to Wish List' }).first(),
-    getPushItMessengerBagPageHeader: () => this.page.getByRole('heading', {name: 'Push It Messenger Bag'}),
-    getPushItMessengerBagPageReviewsTab: () => this.page.locator('#product-review-container')
+    getCurrentPageHeader: () => this.page.getByRole('heading', {name: 'Push It Messenger Bag'}),
+    getCurrentPageReviewsTab: () => this.page.locator('#product-review-container')
   }
 
   async clickTrainingLink() {

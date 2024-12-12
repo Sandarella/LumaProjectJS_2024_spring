@@ -203,6 +203,22 @@ export const LIST_OF_SHOPPING_OPTIONS_ON_WATCHES_PAGE = [
   "NEW",
   "SALE",
 ];
+export const MAIN_PAGE_HOT_SELLERS_LIST_OF_CARD_LINKS = [
+  "/radiant-tee.html",
+  "/breathe-easy-tank.html",
+  "/argus-all-weather-tank.html",
+  "/hero-hoodie.html",
+  "/fusion-backpack.html",
+  "/push-it-messenger-bag.html"
+];
+export const MAIN_PAGE_HOT_SELLERS_LIST_OF_CARD_REVIEW_LINKS = [
+  "/radiant-tee.html#reviews",
+  "/breathe-easy-tank.html#reviews",
+  "/",
+  "/",
+  "/fusion-backpack.html#reviews",
+  "/push-it-messenger-bag.html#reviews"
+];
 export const LIST_OF_SHOPPING_OPTIONS_ON_WATCHES_PAGE_LOCATORS = [
   "div.filter-options>div:nth-child(1) ol li a",
   "div.filter-options>div:nth-child(2) ol li a",

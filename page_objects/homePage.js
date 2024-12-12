@@ -65,25 +65,19 @@ class HomePage {
     getGearMenuItem: () => this.page.getByRole("menuitem", { name: "Gear" }),
     getGearBagsSubmenuItem: () => this.page.getByRole('menuitem', { name: 'Bags' }),
     getGearWatchesSubmenuItem: () => this.page.getByRole("menuitem", { name: "Watches" }),
-    getFirstCardName: () => this.page.locator('a[title="Radiant Tee"]'),
     getNavigationMenuItemsList: () => this.page.getByRole('navigation').getByRole('listitem'),
     getOrdersAndReturnsLink: () => this.page.locator('.page-wrapper footer li:has-text("Orders and Returns")'),
     getGearBagsSubmenuItem: () => this.page.locator("#ui-id-25"),
     getGearBagsLink: () => this.page.getByRole("menuitem").filter({ hasText: "Bags" }),
     getFirstCardReviews: () => this.page.locator('a.action.view[href*="radiant-tee"]'),
-    getSecondCardName: () => this.page.locator('a[title="Breathe-Easy Tank"]'),
     getSecondCardImage: () => this.page.getByAltText('Breathe-Easy Tank'),
     getWomenTopsLink: () => this.page.getByRole('menuitem', { name: 'Tops' }),    
     getSecondCardReviews: () => this.page.locator('a[class="action view"][href*="breathe-easy-tank"]'),
     getThirdCardImage: () => this.page.getByAltText('Argus All-Weather Tank'),
-    getThirdCardName: () => this.page.locator('a[title="Argus All-Weather Tank"]'),
-    getFourthCardName: () => this.page.getByAltText('Hero Hoodie'),
     getFourthCardImage: () => this.page.getByAltText('Hero Hoodie'),
     getFifthCardImage: () => this.page.getByAltText('Fusion Backpack'),
-    getFifthCardName: () => this.page.locator('a[title="Fusion Backpack"]'),
     getFifthCardReviews: () => this.page.locator('.action.view[href*="fusion-backpack"]'),
     getSixthCardImage: () => this.page.getByAltText('Push It Messenger Bag'),
-    getSixthCardName: () => this.page.locator('a[title="Push It Messenger Bag"]'),
     getSixthCardReviews: () => this.page.locator('a[class="action view"][href*="push-it-messenger-bag"]'),
     getHotSellersCardLink: () => this.page.locator('.product-item-photo'),
     getGreetingName: (name) => this.page.locator('[class="panel header"]').filter({ hasText: `Welcome, ${name}`}),
@@ -93,8 +87,44 @@ class HomePage {
     getMainMenuLinks: () => this.page.locator('.level-top.ui-corner-all'),
     getHotSellersSection: () => this.page.getByRole('heading', { name: 'Hot Sellers' }),
     getMainMenuLinks: () => this.page.locator('.level-top.ui-corner-all'),
-    getWomenJacketslink: () => this.page.getByRole('menuitem', { name: 'Jackets' })
+    getWomenJacketslink: () => this.page.getByRole('menuitem', { name: 'Jackets' }),
+    getFirstCardName: () => this.page.locator('a[title="Radiant Tee"]'),
+    getSecondCardName: () => this.page.locator('a[title="Breathe-Easy Tank"]'),
+    getThirdCardName: () => this.page.locator('a[title="Argus All-Weather Tank"]'),
+    getFourthCardName: () => this.page.getByAltText('Hero Hoodie'),
+    getFifthCardName: () => this.page.locator('a[title="Fusion Backpack"]'),
+    getSixthCardName: () => this.page.locator('a[title="Push It Messenger Bag"]'),
   };
+
+  async clickCardName1() {
+    await this.locators.getFirstCardImage().click();
+    return new RadiantTeePage(this.page);
+  }
+
+  async clickCardName2() {
+    await this.locators.getSecondCardName().click();
+    return new BreatheEasyTankPage(this.page)
+  }
+
+  async clickCardName3() {
+    await this.locators.getThirdCardName().click();
+    return new ArgusAllWeatherTankPage(this.page)
+  }
+
+  async clickCardName4() {
+    await this.locators.getFourthCardName().click();
+    return new HeroHoodiePage(this.page)
+  }
+
+  async clickCardName5() {
+    await this.locators.getFifthCardName().click();
+    return new FusionBackpackPage(this.page)
+  }
+
+  async clickCardName6() {
+    await this.locators.getSixthCardName().click();
+    return new PushItMessengerBagPage(this.page)
+  }
 
   async open() {
     await this.page.goto("/");
@@ -197,7 +227,7 @@ class HomePage {
     return new SearchTermPopularPage(this.page);
   }
 
-  async clickFirstCardImage() {
+  async clickCardImage1() {
     await this.locators.getFirstCardImage().click();
 
     return new RadiantTeePage(this.page);
@@ -251,12 +281,6 @@ class HomePage {
     return new GearWatchesPage(this.page);
   }
 
-  async clickFirstCardName() {
-    await this.locators.getFirstCardImage().click();
-
-    return new RadiantTeePage(this.page);
-  }
-
   getFooter() {
     return new Footer(this.page);
   }
@@ -285,19 +309,13 @@ class HomePage {
     return new GearBagsPage(this.page);
   }
 
-  async clickFirstCardReviews() {
+  async clickCardReviews1() {
     await this.locators.getFirstCardReviews().click();
 
     return new RadiantTeePage(this.page)
   }
 
-  async clickSecondCardName() {
-    await this.locators.getSecondCardName().click();
-
-    return new BreatheEasyTankPage(this.page)
-  }
-
-  async clickSecondCardImage() {
+  async clickCardImage2() {
     await this.locators.getSecondCardImage().click();
 
     return new BreatheEasyTankPage(this.page)
@@ -309,31 +327,19 @@ class HomePage {
     return new WomenTopsPage(this.page)
   }
   
-  async clickSecondCardReviews() {
+  async clickCardReviews2() {
     await this.locators.getSecondCardReviews().click();
 
     return new BreatheEasyTankPage(this.page)
   }
 
-  async clickThirdCardImage() {
+  async clickCardImage3() {
     await this.locators.getThirdCardImage().click();
     
     return new ArgusAllWeatherTankPage(this.page)
   }
 
-  async clickThirdCardName() {
-    await this.locators.getThirdCardName().click();
-
-    return new ArgusAllWeatherTankPage(this.page)
-  }
-
-  async clickFourthCardName() {
-    await this.locators.getFourthCardName().click();
-
-    return new HeroHoodiePage(this.page)
-  }
-
-  async clickFourthCardImage() {
+  async clickCardImage4() {
     await this.locators.getFourthCardImage().click();
 
     return new HeroHoodiePage(this.page)
@@ -357,41 +363,37 @@ class HomePage {
     return this;
   }
 
-  async clickFifthCardImage() {
+  async clickCardImage5() {
     await this.locators.getFifthCardImage().click();
 
     return new FusionBackpackPage(this.page)
   }
-  
-  async clickFifthCardName() {
-    await this.locators.getFifthCardName().click();
 
-    return new FusionBackpackPage(this.page)
-  }
-
-  async clickFifthCardReviews() {
+  async clickCardReviews5() {
     await this.locators.getFifthCardReviews().click();
 
     return new FusionBackpackPage(this.page)
   }
   
-  async clickSixthCardImage() {
+  async clickCardImage6() {
     await this.locators.getSixthCardImage().click();
 
     return new PushItMessengerBagPage(this.page)
   }
 
-  async clickSixthCardName() {
-    await this.locators.getSixthCardName().click();
-
-    return new PushItMessengerBagPage(this.page)
-  }
-
-  async clickSixthCardReviews() {
+  async clickCardReviews6() {
     await this.locators.getSixthCardReviews().click();
 
     return new PushItMessengerBagPage(this.page)
   }
+
+  async clickCardReviews3() {
+    return this
+  }
+  async clickCardReviews4() {
+    return this
+  }
+
 
   async getGreetingText(name) {
     return await this.locators.getGreetingName(name).innerText();

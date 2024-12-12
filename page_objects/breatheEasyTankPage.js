@@ -4,8 +4,8 @@ class BreatheEasyTankPage{
     }
 
     locators = {
-        getBreatheEasyTankHeader: () => this.page.getByRole('heading', {name: 'Breathe-Easy Tank'}),
-        getBreatheEasyTankReviewsTab: () => this.page.locator('#product-review-container')
+        getCurrentPageHeader: () => this.page.getByRole('heading', {name: 'Breathe-Easy Tank'}),
+        getCurrentPageReviewsTab: () => this.page.locator('#product-review-container')
     }
 }
 
