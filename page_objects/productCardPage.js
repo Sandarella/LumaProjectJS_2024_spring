@@ -19,29 +19,24 @@ class ProductCardPage {
 
   async goBackToMenTopsPage() {
     await this.page.goBack();
-
     return new MenTopsPage(this.page);
   }
 
   async openRelatedProductCard(idx) {
     await this.locators.getRelatedProductsTitle(idx).click();
-
     return new ProductCardPage(this.page);
   }
 
   async goBackToProductCardPage() {
     await this.page.goBack();
-
     return new ProductCardPage(this.page);
   }
 
   async getQuantityValue() {
-
     return await this.locators.getQuantity().inputValue();
   }
 
   async enterQuantityNumber(number) {
-
     await this.page.getByLabel('Qty').fill(number);
     await this.page.getByLabel('Qty').press('Enter');
   }

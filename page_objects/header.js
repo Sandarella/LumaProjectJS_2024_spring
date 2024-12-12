@@ -24,37 +24,31 @@ class Header {
 
     async clickLogoLink() {
         await this.locators.getLogoLink().click();
-
         return new HomePage(this.page);
     }
 
     async clickCounterNumber() {
         await this.locators.getCounterNumber().click();
-
         return this.page;
     }
 
     async clickProceedToCheckoutBtn() {
         await this.locators.getProceedToCheckoutBtn().click();
-
         return new ShippingPage(this.page);
     }
 
     async waitForCounterNumber() {
         await this.locators.getCounterNumber().waitFor();
-
         return this;
     }
 
     async clickShoppingCartIcon() {
         await this.locators.getShoppingCart().click();
-
         return this;
     }
 
     async clickCrossIconModalWindowShoppingCart() {
         await this.locators.getCrossIconModalWindowShoppingCart().click();
-
         return this;
     }
 
@@ -64,13 +58,11 @@ class Header {
 
     async hoverGearMenu() {
         await this.locators.getGearMenu().hover();
-
         return this;
     }
 
     async clickGearMenu() {
         await this.locators.getGearMenu().click();
-
         return new GearPage(this.page);
     }
 

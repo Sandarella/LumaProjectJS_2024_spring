@@ -14,6 +14,7 @@ import { TIMEOUT } from "dns/promises";
 let homePage, gearWatchesPage, watchProductPage
 
 test.describe('gearWatchesPage.spec', () => {
+
   test.beforeEach(async ({ page }) => {
     homePage = new HomePage(page);
     gearWatchesPage = new GearWatchesPage(page);
@@ -153,7 +154,7 @@ test.describe('gearWatchesPage.spec', () => {
         await gearWatchesPage.clickClearAllButton();
         await gearWatchesPage.clickShoppingOption(LIST_OF_SHOPPING_OPTIONS_ON_WATCHES_PAGE[2]);
     }
-});
+  });
 
   test('Verify only watches on sale displayed on page', async ({ page }) => {
     await gearWatchesPage.clickSaleOption()
@@ -163,15 +164,15 @@ test.describe('gearWatchesPage.spec', () => {
 
   LIST_OF_CATEGORY_WATCHES.forEach((category, idx) => {
     test(`Verify Category options ${category} on gearWatchesPage`, async ({ page }) => {
-        test.slow();
+      test.slow();
     
-        await gearWatchesPage.clickCategory();
+      await gearWatchesPage.clickCategory();
         
-        const List = await gearWatchesPage.locators.getCategoryOptions().nth(idx);
-        const ListText = await gearWatchesPage.getOptionsText(idx);
+      const List = await gearWatchesPage.locators.getCategoryOptions().nth(idx);
+      const ListText = await gearWatchesPage.getOptionsText(idx);
     
-        await expect(List).toBeVisible();
-        expect(ListText).toEqual(LIST_OF_CATEGORY_WATCHES[idx]);
-      })
-    });
+      await expect(List).toBeVisible();
+      expect(ListText).toEqual(LIST_OF_CATEGORY_WATCHES[idx]);
+    })
+  });
 });

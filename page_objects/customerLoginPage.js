@@ -16,22 +16,17 @@ class CustomerLoginPage {
 
     async fillEmailInputField(email) {
         await this.locators.getEmailInputField().fill(email);
-
         return this;
     }
 
     async fillPasswordInputField(password) {
         await this.locators.getPasswordInputField().fill(password);
-
         return this;
     }
 
     async clickSignInBtn() {
         await this.locators.getSignInBtn().focus();
         await this.locators.getSignInBtn().click();
-
-        expect(await this.page.locator('[class="column main"] div:nth-child(5) [class="box-content"] p')).toBeVisible;
-
         return new MyAccountPage(this.page);
     }
 }

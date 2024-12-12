@@ -19,28 +19,26 @@ class WomenPage {
 
     async clickWomenTeesLink() {
         await this.locators.getWomenTeesLink().click();
-
         return new TeesWomenPage(this.page);
     }
+
     async clickWomenTopsLink() {
         await this.locators.getWomenTopsLink().click();
-
         return new TopsWomenPage(this.page);
     }
+
     async clickWomenBottomsLink() {
         await this.locators.getWomenBottomsLink().click();
-
         return new BottomsWomenPage(this.page);
     }
+
     async clickWomenJacketsLink() {
         await this.locators.getWomenJacketsLink().click();
-
         return new JacketsWomenPage(this.page);
     }
 
     async clickWomenBottomsLinkFromShopByCategory() {
         await this.locators.getWomenBottomsLinkFromShopByCategory().click();
-
         return new BottomsWomenPage(this.page);
     }    
 }

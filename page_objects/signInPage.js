@@ -48,25 +48,21 @@ class SignInPage {
 
     async clickButtonSignIn() {
         await this.locators.getButtonSignIn().click();
-        // return
         return new HomePage(this.page)
     }
 
     async fillEmailInputField(myEmail) {
         await this.page.getByLabel('Email', {exact: true}).click();
         await this.locators.getfieldEmail().fill(myEmail);
-
         return this;
     }
 
     async fillPasswordInputField(myPassword) {
         await this.locators.getFieldPassword().focus();
         await this.locators.getFieldPassword().fill(myPassword);
-
         return this;
     }
     async welcomeUser() {
-        // return this.locators.getGreetingElement()
         await this.locators.getGreetingElement();
         return getGreetingElement.isVisible();
 
@@ -86,7 +82,6 @@ class SignInPage {
     async clickButtonSignInAndGoToWishlist() {
         await this.locators.getButtonSignIn().focus();
         await this.locators.getButtonSignIn().click();
-
         return new WishListPage(this.page)
     }
 }

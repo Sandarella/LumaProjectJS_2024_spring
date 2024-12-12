@@ -28,13 +28,11 @@ class WishListPage {
 
     async clickTrainingLink() {
         await this.locators.getTrainingLink().click();
-
         return new TrainingPage(this.page);
     }
 
     async hoverMyWishListItemName() {
         await this.locators.getMyWishListItemName().hover();
-
         return this;
     }
 
@@ -45,16 +43,18 @@ class WishListPage {
     async clickAddCard() {
         await this.locators.getAddToCard().click();
     }
+
     async getFirstSidebarMyWishListItemNameText() {
         const nameElements = this.locators.getSidebarMyWishListItemName();
         const count = await nameElements.count();
         const name = await (count > 1 ? nameElements.first() : nameElements).textContent();
-
         return name;
     }
+
     async getFirstSidebarMyWishListItemPriceText() {
         return await this.locators.getSidebarMyWishListItemPrice().first().innerHTML();
     }
+
     async cleanMyWishListFromSideBar() {
         await this.locators.getUpdateMyWishList().click();
         await this.page.waitForTimeout(3000);
@@ -79,15 +79,15 @@ class WishListPage {
             await this.page.waitForTimeout(1000);
         }
     }
+
     async getLastMyWishListItemNameText() {
         let itemName = await this.locators.getMyWishListItemsName().last()
         itemName = itemName.innerText()
-
         return itemName;
     }
+
     async clickUpdateMyWishList() {
         await this.locators.getUpdateMyWishList().click();
-
         return this;
     }
 }

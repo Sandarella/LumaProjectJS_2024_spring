@@ -19,18 +19,14 @@ class SalePage {
         getSalePageHeader: () => this.page.getByRole('heading', { name: 'Sale'}),
         getDealsLocator: () => this.page.locator('.categories-menu span'),
         getWomenShortsLink: () => this.page.getByRole('link', {name:'Shorts'}).first(),
-
-
     }
 
     async obtainSideMenuSectionsText() {
         return await this.locators.getSideMenuSections().allInnerTexts();
     }
 
-    async clickOnItemsFromMensDealsSection(option){
-
+    async clickOnItemsFromMensDealsSection(option) {
         await this.locators.getItemsFromMensDealsSection(option).click();
-
         switch (option) {
             case 'Hoodies and Sweatshirts':
                 return new HoodiesAndSweatshirtsPage(this.page);
@@ -42,7 +38,8 @@ class SalePage {
                 return new PantsPage(this.page);
             case 'Shorts':
                 return new ShortsPage(this.page);
-        }}   
+        }
+    }   
 
     async clickWomensShortsLink() {
         await this.locators.getWomenShortsLink().click();

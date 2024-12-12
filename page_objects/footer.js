@@ -21,7 +21,6 @@ class Footer {
 
     async clickPrivacyAndCookiePolicyLink() {
         await this.locators.getPrivacyAndCookiePolicyLink().click();
-
         return new PrivacyPolicyPage(this.page);
     }
 
@@ -36,7 +35,6 @@ class Footer {
 
     async clickAdvancedSearchLink() {
         await this.locators.getAdvancedSearchLink().click();
-
         return new SearchAdvancedPage(this.page);
     }
 

@@ -14,31 +14,26 @@ class InezFullZipJacketPage {
     }
     async clickInezJacketSizeOptionLable() {
         await this.locators.getInezJacketSizeOptionLable().click();
-
         return this;
     }
 
     async clickInezJacketColorOptionLable() {
         await this.locators.getInezJacketColorOptionLable().click();
-
         return this;
     }
 
     async clickInezJacketAddToCartButton() {
         await this.locators.getInezJacketAddToCartButton().click();
-
         return this;
     }
 
     async clickShoppingCartLink() {
         await this.locators.getShoppingCartLink().click();
-
         return new ShoppingCartPage(this.page);
     }
 
     async waitForShoppingCartLink() {
         await this.locators.getShoppingCartLink().waitFor();
-
         return this;
     }
 

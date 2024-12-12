@@ -12,13 +12,11 @@ class GearFitnessPage  {
 
     async hoverGearFitnessListMode() {
         await this.locators.getGearFitnessListModeLocator().hover();
-
         return this.page;
     }
 
     async clickGearFitnessListMode() {
         await this.locators.getGearFitnessListModeLocator().click();
-
         return this.page;
     }
 }

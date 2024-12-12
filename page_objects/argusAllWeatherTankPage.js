@@ -7,5 +7,4 @@ class ArgusAllWeatherTankPage{
         getCurrentPageHeader: () => this.page.getByRole('heading', { name: 'Argus All-Weather Tank' }),
     }
 }
-
 export default ArgusAllWeatherTankPage

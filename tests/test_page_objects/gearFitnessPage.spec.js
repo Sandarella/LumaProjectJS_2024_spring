@@ -7,7 +7,7 @@ let homePage
 
 test.describe('gearFitnessPage.spec', () => {
     test.beforeEach(async ({ page }) => {
-         homePage = new HomePage(page);
+        homePage = new HomePage(page);
 
         await homePage.open();
     })

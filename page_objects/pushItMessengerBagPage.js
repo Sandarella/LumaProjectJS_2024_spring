@@ -14,13 +14,11 @@ class PushItMessengerBagPage {
 
   async clickTrainingLink() {
     await this.locators.getTrainingLink().click();
-
     return new TrainingPage(this.page);
   }
 
   async clickPushItMessengerItemAddtoWishList() {
     await this.locators.getMyWishList().click();
-
     return new WishListPage(this.page);
   }
 }

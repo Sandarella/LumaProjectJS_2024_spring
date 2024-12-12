@@ -17,30 +17,25 @@ class RadiantTeePage {
 
     async clickRadiantTeeSizeS() {
         await this.locators.getRadiantTeeSizeS().click();
-
         return this.page;
     }
 
     async clickRadiantTeeSizeM() {
         await this.locators.getRadiantTeeSizeM().click();
-
         return this.page;
     }
 
     async clickRadiantTeeColorBlue() {
         await this.locators.getRadiantTeeColorBlue().click();
-
         return this.page;
     }
 
     async clickAddToCartBtn() {
         await this.locators.getAddToCartBtn().click();
-
         return this.page;
     }
     async clickRadiantTeeColorPurple() {
         await this.locators.getRadiantTeeColorPurple().click();
-
         return this.page;
     }
 }

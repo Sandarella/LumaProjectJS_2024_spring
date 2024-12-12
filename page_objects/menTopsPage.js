@@ -39,9 +39,8 @@ class MenTopsPage{
    };
 
    async clickMenTopsStyle(){
-    await this.locators.getMenTopsStyle().click()
-
-    return this
+     await this.locators.getMenTopsStyle().click()
+     return this
    };
 
    async clickMenTopsCategory(){
@@ -51,25 +50,21 @@ class MenTopsPage{
 
    async expandMenTopsPriceFilterDropDown(){
       await this.locators.getMenTopsPrice().click();
-
       return this;
    };
 
    async applyFirstMenTopsPriceFilter() {
       await this.locators.getMenTopsListPrice().first().click({ timeout: 1000});
-
       return this;
    }
 
    async getToolBarAmount() {
       const toolbarAmount = await this.locators.getToolBarAmountLocator().allTextContents();
-      
       return toolbarAmount.map(el => el.slice(1, -1)).shift();
    }
 
    async getMenTopsPriceList(){
       const priceList = await this.locators.getMenTopsListPrice().allInnerTexts();
-
       return await priceList.map((el) => { 
          const arr = el.trim().replaceAll('\nitem', '').split(' ');
          arr.pop();
@@ -80,13 +75,11 @@ class MenTopsPage{
    async selectSortByPrice() {
       await this.locators.getSortByLocator().selectOption('price');
       await this.page.waitForTimeout(2000);
-
       return this;
    }
 
    async clickMenTopsPriceRange(index) {
       await this.locators.getMenTopsPriceRange(index).click();
-
       return this;
    }
 
@@ -98,7 +91,6 @@ class MenTopsPage{
    async getMinProductItemPrice() {
       await this.selectSortByPrice();
       const productPrice = await this.locators.getProductsPriceLocator().allInnerTexts();
-
       return Number(productPrice.map(price => price.slice(1))[0]);
    }
 
@@ -106,81 +98,70 @@ class MenTopsPage{
       await this.selectSortByPrice();
       await this.clickGetDescOrderLink();
       const productPrice = await this.locators.getProductsPriceLocator().allInnerTexts();
-
       return Number(productPrice.map(price => price.slice(1))[0]);
    }
 
    async getPriceFilterMinThreshold() {
       const priceRange = await this.locators.getShoppingOptionFilterValue().allTextContents();
-
       return Number(priceRange.map(range => range.split(' ').map(el => el.slice(1))).flat()[0]);
    }
 
    async getPriceFilterMaxThreshold() {
       if (await this.getPriceFilterMinThreshold() != 90) {
          const priceRange = await this.locators.getShoppingOptionFilterValue().allTextContents();
-
          return Number(priceRange.map(range => range.split(' ').map(el => el.slice(1))).flat().slice(-1));
       } else return Infinity
    }
 
    async clickProductCard(product) { 
       await this.page.getByText(product).click();
-
       return new ProductCardPage(this.page);
    }
 
    async getMenTopsPriceListProductCount(){
       const priceListProductCount = await this.locators.getMenTopsPriceListProductQuantity().allInnerTexts();
-
       return priceListProductCount.map((item) => item.replaceAll('\nitem', ''));
    }
 
    async getMenTopsPriceListProductCountPseudoElementBefore(){
-      const productCountPseudoElementBefore = await this.locators.getMenTopsPriceListProductCountPseudoElement().evaluate(el => window.getComputedStyle(el, ':before').content);
-
+      const productCountPseudoElementBefore = await this.locators.getMenTopsPriceListProductCountPseudoElement()
+            .evaluate(el => window.getComputedStyle(el, ':before').content);
       return productCountPseudoElementBefore.substring(1, 2);
    }
 
    async getMenTopsPriceListProductCountPseudoElementAfter(){
-      const productCountPseudoElementAfter = await this.locators.getMenTopsPriceListProductCountPseudoElement().evaluate(el => window.getComputedStyle(el, ':after').content);
-
+      const productCountPseudoElementAfter = await this.locators.getMenTopsPriceListProductCountPseudoElement()
+            .evaluate(el => window.getComputedStyle(el, ':after').content);
       return productCountPseudoElementAfter.substring(1, 2);
    }
    async clickCategoryOption(ind) {
       await this.locators.getCategoryOptions(ind).click();
-  
       return this;
     }
 
     async clickClearAllButton() {
       await this.locators.getClearAllButton().click();
-  
       return this;
     }
 
     async countSubcategoryItems(){
       const count = await this.locators.getCountOfItemsOnEachSubCategory().count();
-
       return count;
     }
 
     async clickNextPage(){
       await this.locators.getNextLink().click();
-      
       return this;
     }
 
     async hoverGetDescOrderLink() {
       await this.locators.getDescOrderLink().hover();
-
       return this.page;
     }
 
     async clickGetDescOrderLink() {
       await this.locators.getDescOrderLink().click();
       await this.page.waitForTimeout(2000);
-
       return this.page;
     }
  }

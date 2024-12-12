@@ -54,12 +54,10 @@ test.describe('createAccuntPage.spec', () => {
 
     test('RF_TC 10.3.1_13 Registration/Create Account as a new user ', async({page})=>{
         await homePage.clickSignInLink()
-
         await expect(page).toHaveURL(BASE_URL + SIGN_IN_END_POINT)
         await expect(signInPage.locators.getCreateAnAccountButton()).toHaveText(BUTTON_REGISTRATION_TITLE)
 
         await signInPage.clickCreateAnAccountButton()
-
         await expect(page).toHaveURL(BASE_URL + CUSTOMER_ACCOUNT_CREATE_END_POINT)
         await expect(createAccountPage.locators.getCreateAccountHeader()).toHaveText(CREATE_ACCOUNT_PAGE_HEADER)
 

@@ -6,7 +6,7 @@ class CompareProductsPage {
 	locators = {
 		getCompareProductsHeader: () => this.page.getByRole('heading', { name: 'Compare Products' }).locator('span'),
 		getCompareProductsItem: () => this.page.getByText('Push It Messenger Bag', { exact: true })
-		};
+	};
 
 
 }

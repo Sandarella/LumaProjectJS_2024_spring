@@ -1,5 +1,3 @@
-
-
 class FusionBackpackPage {
     constructor(page) {
         this.page = page;

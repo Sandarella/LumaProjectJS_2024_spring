@@ -15,24 +15,21 @@ class ShoppingCartPage {
 
     async clickMoveToWishListLink() {
         await this.locators.getMoveToWishListLink().click();
-
         return this;
     }
 
     async waitForMoveToWishListLink() {
         await this.locators.getMoveToWishListLink().waitFor();
-
         return this;
     }
+    
     async waitForOrderTotalText() {
         await this.locators.getOrderTotalText().waitFor();
-
         return this;
     }
 
     async clickProceedToCheckoutButton() {
         await this.locators.getProceedToCheckoutButton().click();
-
         return new ShippingPage(this.page);
     }
 }

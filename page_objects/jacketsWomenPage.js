@@ -15,7 +15,6 @@ class JacketsWomenPage {
 
     async clickWomenJacketsName() {
         await this.locators.getWomenJacketsName().click();
-
         return new InezFullZipJacketPage(this.page);
     }
 

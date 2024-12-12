@@ -7,5 +7,4 @@ class ShortsPage {
     }
 
 }
-
 export default ShortsPage;

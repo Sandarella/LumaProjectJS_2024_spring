@@ -8,6 +8,7 @@ import { GEAR_BAGES_SECOND_PAGE_END_POINT } from '../../helpers/testGearBagsData
 let homePage, gearBagsPage
 
 test.describe('gearBags.spec', () => {
+    
     test.beforeEach(async({page}) => {
         homePage = new HomePage(page);
         gearBagsPage = new GearBagsPage(page);
