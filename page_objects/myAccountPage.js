@@ -16,7 +16,7 @@ class MyAccountPage {
         getWomenLink: () => this.page.getByText('Women'),
         getLogoLink: () => this.page.getByRole("link", { name: "store logo" }),
         getEditLink: () => this.page.getByRole('link', {name: 'Edit', exact: true }),
-        getNameInContactInformation: () => this.page.locator('[class="column main"] div:nth-child(5) [class="box-content"] p'),
+        getNameInContactInformation: () => this.page.locator('.box-content p'),
         getGreetingName: (name) => this.page.locator('[class="panel header"]').filter({ hasText: `Welcome, ${name}`}),
         getGreetting: () => this.page.locator('[class="panel header"] [class="greet welcome"]'),
         getAccountInformationSidebarLink: () => this.page.locator('[class="nav items"] li:nth-child(7)'),
@@ -24,31 +24,26 @@ class MyAccountPage {
 
     async clickMyOrdersLink() {
         await this.locators.getMyOrdersLink().click();
-
         return new MyOrdersPage(this.page);
     }
 
     async clickWomenLink() {
         await this.locators.getWomenLink().click();
-
         return new WomenPage(this.page);
     }
 
     async waitForMyAccountHeader() {
         await this.locators.getMyAccountHeader().waitFor();
-
         return this;
     }
 
     async clickLogoLink() {
         await this.locators.getLogoLink().click();
-
         return new HomePage(this.page);
     }
 
     async clickEditLink() {
         await this.locators.getEditLink().click();
-
         return new EditAccountInformation(this.page);
     }
 
@@ -62,7 +57,6 @@ class MyAccountPage {
 
     async clickAccountInformationSidebarLink() {
         await this.locators.getAccountInformationSidebarLink().click();
-
         return new EditAccountInformation(this.page);
     }
 

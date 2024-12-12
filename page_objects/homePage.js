@@ -393,7 +393,6 @@ class HomePage {
     return this
   }
 
-
   async getGreetingText(name) {
     return await this.locators.getGreetingName(name).innerText();
   }
