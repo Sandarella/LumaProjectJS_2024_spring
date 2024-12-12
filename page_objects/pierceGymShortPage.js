@@ -8,7 +8,7 @@ class PierceGymShortPage {
     locators = {
 
         getWishList: () => this.page.getByRole('link', { name: ' Add to Wish List' }),
-        getProductShort: () => this.page.getByRole('heading', { name: 'Pierce Gym Short' }).locator('span')
+        getProductShortTitle: () => this.page.getByRole('heading', { name: 'Pierce Gym Short' })
 
     }
 
