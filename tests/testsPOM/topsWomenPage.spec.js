@@ -1,6 +1,6 @@
 import { expect } from "@playwright/test";
 import { test, createNewAccount, signIn } from "./base.js"
-import HomePage from "../../page_objects/homePage";
+import HomePage from "../page_objects/homePage.js";
 
 import {
   BASE_URL,
@@ -10,9 +10,9 @@ import {
   SIGN_IN_PAGE_END_POINT,
   CUSTOMER_WISH_LIST_END_POINT,
   CUSTOMER_USER_DATA,
-} from "../../helpers/testData";
-import { getRandomNumber, urlToRegexPattern } from "../../helpers/testUtils";
-import { MODE_GRID_ACTIVE_ATTR_CLASS, MODE_LIST_ACTIVE_ATTR_CLASS } from '../../helpers/testWomenData'
+} from "../helpers/testData.js";
+import { getRandomNumber, urlToRegexPattern } from "../helpers/testUtils.js";
+import { MODE_GRID_ACTIVE_ATTR_CLASS, MODE_LIST_ACTIVE_ATTR_CLASS } from '../helpers/testWomenData.js'
 
 test.describe("topWomenPage.spec", () => {
   test.beforeEach(async ({ page }) => {

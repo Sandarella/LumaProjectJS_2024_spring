@@ -1,7 +1,7 @@
 import { test as base } from '@playwright/test';
-import HomePage from '../../page_objects/homePage';
-import MyAccountPage from '../../page_objects/myAccountPage';
-import {USER_DATA, ADRESS_DATA, CUSTOMER_USER_DATA} from '../../helpers/testData';
+import HomePage from './homePage';
+import MyAccountPage from './myAccountPage';
+import {USER_DATA, ADRESS_DATA, CUSTOMER_USER_DATA} from '../helpers/testData';
 
 export const test = base.extend({
     createNewAccount: [
